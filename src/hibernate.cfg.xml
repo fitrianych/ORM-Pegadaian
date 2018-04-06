@@ -42,9 +42,21 @@ Contributor(s):
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">system</property>
     <property name="hibernate.connection.password">1412</property>
+    <property name="hibernate.connection.autocommit">true</property>
+    <property name="hibernate.default_schema">hr</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
+    <property name="current_session_context_class">thread</property>
+    <mapping class="entities.Angsuran"/>
+    <mapping class="entities.Barang"/>
+    <mapping class="entities.Customer"/>
+    <mapping class="entities.DetailGadai"/>
+    <mapping class="entities.DetailGadaiPK"/>
+    <mapping class="entities.Gadai"/>
+    <mapping class="entities.JenisBarang"/>
   </session-factory>
 </hibernate-configuration>

@@ -65,6 +65,10 @@ public class Customer implements Serializable {
         this.noIdentitas = noIdentitas;
     }
 
+    public Customer(Integer no_identitas, String nama, String jenis_kelamin, String no_telp, String pekerjaan, String alamat) {
+       
+    }
+
     public BigDecimal getNoIdentitas() {
         return noIdentitas;
     }

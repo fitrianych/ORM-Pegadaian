@@ -5,10 +5,17 @@
  */
 package dao;
 
+import java.util.List;
+
 /**
  *
  * @author Fitriany Chairunnisa
  */
 public interface InterfaceDAO {
-    
+     public boolean insert(Object object);
+    public boolean update(Object object);
+    public boolean delete(Object object);
+    public List<Object> getAll();
+    public List<Object> search(String category, String search);
+    public Object getById(String id);
 }
