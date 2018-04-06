@@ -49,12 +49,16 @@ public class BarangDAO implements InterfaceDAO{
 
     @Override
     public List<Object> search(String category, String search) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.getAll("FROM Barang WHERE " + category + " LIKE '%" + search + "%'");
     }
 
     @Override
     public Object getById(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public Object getByIdJns(String id){
+        return fdao.getByIdJns("from JenisBarang where idJenis ='" + id + "'");
     }
     
     

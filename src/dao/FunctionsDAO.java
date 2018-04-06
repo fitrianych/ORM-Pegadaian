@@ -84,6 +84,24 @@ public class FunctionsDAO {
         return obj;
     }
            
+              public Object getByIdJns(String query) {
+        Object obj = new Object();
+        try {
+            session = factory.openSession();
+            transaction = session.beginTransaction();
+            obj = session.createQuery(query).uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return obj;
+    }
+           
         public boolean delete(Class type, Serializable srlzbl) {
         boolean flag = false;
         try {
