@@ -117,6 +117,11 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
         });
 
         btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -272,6 +277,20 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
         btnSimpan.setEnabled(true);
         btnHapus.setEnabled(true);
     }//GEN-LAST:event_tblCustomerMouseClicked
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+         int i= JOptionPane.showConfirmDialog(this, "Yakin Mau Dihapus?");
+        System.out.println(i);
+        if(i==0){
+        String pesan = "Gagal Hapus";
+        boolean hasil = customerController.delete(tfNoIdentitas.getText());
+        if (hasil) pesan="Berhasil Hapus";
+        JOptionPane.showMessageDialog(this, pesan); 
+            customerController.bindingAll(tblCustomer, header);
+            
+        }
+        reset();
+    }//GEN-LAST:event_btnHapusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

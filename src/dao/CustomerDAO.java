@@ -5,6 +5,8 @@
  */
 package dao;
 
+import entities.Customer;
+import java.math.BigDecimal;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,9 +39,9 @@ public class CustomerDAO implements InterfaceDAO{
         return fdao.insert(object);
     }
 
-    @Override
+     @Override
     public boolean delete(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.delete(Customer.class,(new BigDecimal(object+"")));
     }
 
     @Override

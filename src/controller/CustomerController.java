@@ -36,6 +36,11 @@ public class CustomerController {
         return cDAO.update(cuss);
     }
      
+     public boolean delete(String no_identitas)
+    {
+        Customer cus1 = new Customer(new BigDecimal(no_identitas+""));
+        return cDAO.delete(cus1.getNoIdentitas());
+    }
      
      public void bindingSearch(JTable table, String[]header, String category, String search){
         bindingTable(table, header, cDAO.search(category, search));
