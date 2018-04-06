@@ -34,7 +34,7 @@ public class CustomerDAO implements InterfaceDAO{
 
     @Override
     public boolean update(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.insert(object);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class CustomerDAO implements InterfaceDAO{
 
     @Override
     public List<Object> search(String category, String search) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.getAll("FROM Customer WHERE " + category + " LIKE '%" + search + "%'");
     }
 
     @Override
