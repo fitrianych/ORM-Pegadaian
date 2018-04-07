@@ -55,6 +55,11 @@ public class Barang implements Serializable {
         this.idBarang = idBarang;
     }
 
+    public Barang(Short idBarang, String namaBarang) {
+       this.idBarang = idBarang;
+       this.namaBarang = namaBarang;
+    }
+
     public Short getIdBarang() {
         return idBarang;
     }

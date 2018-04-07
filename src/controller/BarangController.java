@@ -19,12 +19,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Fitriany Chairunnisa
  */
 public class BarangController {
-     private final BarangDAO bDAO;
+    private final BarangDAO bDAO;
     private final Jenis_BarangDAO jDAO;
     
     public BarangController() {
         this.bDAO = new BarangDAO();
         this.jDAO = new Jenis_BarangDAO();
+    }
+    
+     public boolean save(Short idBarang, String namaBarang, String idJenis,boolean isSave){
+        Barang barang = new Barang(Short.valueOf(idBarang), namaBarang);
+        String[] jId = idJenis.split(" ");
+        //String[] lId = LocationId.split(" ");
+        barang.setIdJenis((JenisBarang) jDAO.getById(jId[0]));
+        //departments.setLocationId((Locations) lDAO.getById(lId[0]));
+        if (isSave)return bDAO.insert(barang);
+        return bDAO.update(barang);
     }
     
      public void bindingAll(JTable table,
@@ -63,5 +73,9 @@ public class BarangController {
        
        public void bindingSearch(JTable table, String[]header, String category, String search){
         bindingTable(table, header, bDAO.search(category, search));
+    }
+       
+       public boolean delete(Short id) {
+        return bDAO.delete(id);
     }
 }

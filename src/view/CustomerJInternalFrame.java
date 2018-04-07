@@ -60,10 +60,12 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
         btnHapus = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Data Customer");
 
-        cmbCari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nama" }));
+        cmbCari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- - Pilih - -", "ID", "Nama" }));
         cmbCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbCariActionPerformed(evt);
@@ -235,8 +237,9 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         String kolom ="";
        switch (cmbCari.getSelectedIndex()){
-           case 0:kolom="no_identitas";break;
-           case 1:kolom="nama";break;
+           case 0:kolom="";break;
+           case 1:kolom="no_identitas";break;
+           case 2:kolom="nama";break;
        }
         
         customerController.bindingSearch(tblCustomer, header, kolom, tfCustomer.getText());

@@ -5,6 +5,7 @@
  */
 package dao;
 
+import entities.JenisBarang;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,17 +29,17 @@ public class Jenis_BarangDAO implements InterfaceDAO{
 
     @Override
     public boolean insert(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return fdao.insert(object);
     }
 
     @Override
     public boolean update(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.insert(object);
     }
 
     @Override
     public boolean delete(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.delete(JenisBarang.class, Short.decode(object + ""));
     }
 
     @Override
@@ -48,12 +49,12 @@ public class Jenis_BarangDAO implements InterfaceDAO{
 
     @Override
     public List<Object> search(String category, String search) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.getAll("FROM JenisBarang WHERE " + category + " LIKE '%" + search + "%'");
     }
 
     @Override
     public Object getById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.getById("from JenisBarang where idJenis='" + id + "'");
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package dao;
 
+import entities.Barang;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,17 +30,17 @@ public class BarangDAO implements InterfaceDAO{
 
     @Override
     public boolean insert(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.insert(object);
     }
 
     @Override
     public boolean update(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return fdao.insert(object);
     }
 
     @Override
     public boolean delete(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.delete(Barang.class, Short.decode(object + ""));
     }
 
     @Override

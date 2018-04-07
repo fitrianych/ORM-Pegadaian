@@ -49,6 +49,11 @@ public class JenisBarang implements Serializable {
         this.idJenis = idJenis;
     }
 
+    public JenisBarang(Short id_jenis, String nama_jenis) {
+       this.idJenis = id_jenis;
+       this.namaJenis = nama_jenis;
+    }
+
     public Short getIdJenis() {
         return idJenis;
     }
