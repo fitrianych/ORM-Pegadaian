@@ -15,7 +15,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Transaksi"/>
+            <Property name="text" type="java.lang.String" value="Master"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">

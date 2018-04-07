@@ -53,7 +53,7 @@ public class JFrame extends javax.swing.JFrame {
             .addGap(0, 474, Short.MAX_VALUE)
         );
 
-        jMenu4.setText("Transaksi");
+        jMenu4.setText("Master");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Customer");

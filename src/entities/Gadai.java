@@ -7,9 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,12 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -56,13 +52,12 @@ public class Gadai implements Serializable {
     private Long jumlahPinjaman;
     @Column(name = "STATUS")
     private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gadai", fetch = FetchType.LAZY)
-    private List<DetailGadai> detailGadaiList;
     @JoinColumn(name = "NO_IDENTITAS", referencedColumnName = "NO_IDENTITAS")
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer noIdentitas;
-    @OneToMany(mappedBy = "idGadai", fetch = FetchType.LAZY)
-    private List<Angsuran> angsuranList;
+    @JoinColumn(name = "ID_STATUS", referencedColumnName = "ID_SATUS")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Status idStatus;
 
     public Gadai() {
     }
@@ -111,15 +106,6 @@ public class Gadai implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
-    public List<DetailGadai> getDetailGadaiList() {
-        return detailGadaiList;
-    }
-
-    public void setDetailGadaiList(List<DetailGadai> detailGadaiList) {
-        this.detailGadaiList = detailGadaiList;
-    }
-
     public Customer getNoIdentitas() {
         return noIdentitas;
     }
@@ -128,13 +114,12 @@ public class Gadai implements Serializable {
         this.noIdentitas = noIdentitas;
     }
 
-    @XmlTransient
-    public List<Angsuran> getAngsuranList() {
-        return angsuranList;
+    public Status getIdStatus() {
+        return idStatus;
     }
 
-    public void setAngsuranList(List<Angsuran> angsuranList) {
-        this.angsuranList = angsuranList;
+    public void setIdStatus(Status idStatus) {
+        this.idStatus = idStatus;
     }
 
     @Override
