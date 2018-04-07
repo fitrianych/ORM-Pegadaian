@@ -135,5 +135,17 @@ public class Gadai implements Serializable {
     public String toString() {
         return "entities.Gadai[ idGadai=" + idGadai + " ]";
     }
+
+    public void setIdGadai(String id_gadai) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setJatuhTempo(String jatuh_tempo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setIdStatus(String Status) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

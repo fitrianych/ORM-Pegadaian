@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package view;
+import static com.sun.webkit.perf.WCFontPerfLogger.reset;
+import controller.GadaiController;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -11,11 +14,13 @@ package view;
  */
 public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form GadaiJInternalFrame
-     */
+    private String header[] = {"Id Gadai", "Jatuh Tempo", "Jumlah pinjaman", "Status", "No Identitas"};
+    public  GadaiController gad;
+
     public GadaiJInternalFrame() {
         initComponents();
+        gad = new GadaiController();
+        gad.BindingAll(tableGadai, header);
     }
 
     /**
@@ -30,21 +35,33 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
         tfNoIdent = new javax.swing.JTextField();
         btnCariIdent = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableGadai = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        txtIdgadai = new javax.swing.JTextField();
+        txtjumlahpinjamn = new javax.swing.JTextField();
+        txtStatus = new javax.swing.JTextField();
+        txtjatuhtempo = new com.toedter.calendar.JDateChooser();
+        jButtonSimpan = new javax.swing.JButton();
+        jButtonHapus = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtNoidentitas = new javax.swing.JTextField();
 
         setTitle("Gadai");
 
         tfNoIdent.setToolTipText("No. Identitas");
 
         btnCariIdent.setText("Cari");
+        btnCariIdent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariIdentActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableGadai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,17 +72,28 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableGadai);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Form Gadai"));
 
         jLabel1.setText("ID Gadai");
-
-        jLabel2.setText("Tanggal Pengajuan");
 
         jLabel3.setText("Jatuh Tempo");
 
         jLabel4.setText("Jumlah Pinjaman");
 
         jLabel5.setText("Status");
+
+        jButtonSimpan.setText("simpan");
+        jButtonSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSimpanActionPerformed(evt);
+            }
+        });
+
+        jButtonHapus.setText("hapus");
+
+        jLabel6.setText("No Identitas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,27 +102,60 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(60, 60, 60)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtjumlahpinjamn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtIdgadai)
+                                    .addComponent(txtNoidentitas, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+                                .addGap(46, 46, 46)
+                                .addComponent(jButtonSimpan)
+                                .addGap(32, 32, 32)
+                                .addComponent(jButtonHapus))
+                            .addComponent(txtjatuhtempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtIdgadai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(txtjatuhtempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtjumlahpinjamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonSimpan)
+                            .addComponent(jButtonHapus))
+                        .addContainerGap(24, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtNoidentitas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,7 +171,9 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnCariIdent)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -122,25 +185,77 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(btnCariIdent))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCariIdentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariIdentActionPerformed
+      String kolom ="";
+//       switch (cmbCari.getSelectedIndex()){
+//           case 0:kolom="";break;
+//           case 1:kolom="no_identitas";break;
+//           case 2:kolom="nama";break;
+//       }
+        
+//        GadaiController.bindingSearch(tableGadai, header, kolom, tfNoIdent.getText());
+//        System.out.println(cmbCari.getSelectedItem()+"");
+                                          
+    }//GEN-LAST:event_btnCariIdentActionPerformed
+
+    private void jButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimpanActionPerformed
+        boolean hasil = false;
+        if (!txtIdgadai.isEnabled()) {
+            hasil = gad.update(Integer.parseInt(txtIdgadai.getText()),
+                    
+                    txtjatuhtempo.getDate().getTime() + "",
+                    (Long.valueOf(txtjumlahpinjamn.getText())),
+                    txtStatus.getText(),
+                    txtNoidentitas.getText());
+                   
+            txtIdgadai.setEnabled(true);
+        } else {
+            hasil = gad.insert(String.parseInt(txtIdgadai.getText()),
+                   txtjatuhtempo.getDate().getTime() + "",
+                    (Long.valueOf(txtjumlahpinjamn.getText())),
+                    txtStatus.getText(),
+                    txtNoidentitas.getText());
+        }
+        String pesan = "Gagal menambahkan data";
+        if (hasil) {
+            try {
+                pesan = "Berhasil menambahkan Data";
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        JOptionPane.showMessageDialog(this, pesan);
+        gad.BindingAll(tableGadai, header);
+                                           
+    }//GEN-LAST:event_jButtonSimpanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCariIdent;
+    private javax.swing.JButton jButtonHapus;
+    private javax.swing.JButton jButtonSimpan;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableGadai;
     private javax.swing.JTextField tfNoIdent;
+    private javax.swing.JTextField txtIdgadai;
+    private javax.swing.JTextField txtNoidentitas;
+    private javax.swing.JTextField txtStatus;
+    private com.toedter.calendar.JDateChooser txtjatuhtempo;
+    private javax.swing.JTextField txtjumlahpinjamn;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.awt.Component;
+import oracle.net.aso.g;
+
 /**
  *
  * @author Fitriany Chairunnisa
@@ -133,7 +136,9 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+         GadaiJInternalFrame g = new GadaiJInternalFrame();
+        g.show();
+        Component add = jDesktopPane.add(g);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
