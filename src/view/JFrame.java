@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.awt.Component;
+import oracle.net.aso.g;
+
 /**
  *
  * @author Fitriany Chairunnisa
