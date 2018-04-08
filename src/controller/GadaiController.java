@@ -5,8 +5,10 @@
  */
 package controller;
 
+import dao.BarangDAO;
 import dao.GadaiDAO;
 import dao.StatusDAO;
+import entities.Barang;
 import entities.Customer;
 import entities.Gadai;
 import entities.Status;
@@ -23,10 +25,12 @@ import javax.swing.table.DefaultTableModel;
 public class GadaiController {
     private final GadaiDAO gDAO;
     private final StatusDAO sDAO;
+    private final BarangDAO bDAO;
     
     public GadaiController() {
         this.gDAO = new GadaiDAO();
         this.sDAO = new StatusDAO();
+        this.bDAO = new BarangDAO();
     }
 
     
@@ -37,23 +41,6 @@ public class GadaiController {
                 gDAO.getAll());
     }
 
-//    private void BindingTabel(JTable table, String[] header, List<Object> datas) {
-//        DefaultTableModel model = new DefaultTableModel(header, 0);
-//        for (Object data : datas) {
-//            Gadai gad = (Gadai) data;
-//            Object[] data1 = {
-//                gad.getIdGadai(),
-//                gad.getNoIdentitas(),
-//                gad.getTanggalPengajuan(),
-//                gad.getJatuhTempo(),
-//                gad.getJumlahPinjaman(),
-//                gad.getIdStatus().getStatus()
-//            };
-//            model.addRow(data1);
-//        }
-//        table.setModel(model);
-//    }
-    
     public void bindingSearch(JTable table, String[]header, String category, String search){
         bindingTable(table, header, gDAO.search(category, search));
     }
@@ -69,6 +56,7 @@ public class GadaiController {
                 gad.getTanggalPengajuan(),
                 gad.getJatuhTempo(),
                 gad.getJumlahPinjaman(),
+                gad.getIdBarang().getNamaBarang(),
                 gad.getIdStatus().getStatus()
             };
             m.addRow(data1);
@@ -81,7 +69,7 @@ public class GadaiController {
 //    }
     
       public boolean save(String idGadai,  String tanggalPengajuan, 
-              String jatuhTempo,String jumlahPinjaman,String noIdentitas, String idStatus,boolean isSave){
+              String jatuhTempo,String jumlahPinjaman,String noIdentitas, String idBarang, String idStatus,boolean isSave){
           
        Gadai gadai = new Gadai();
        gadai.setIdGadai(Integer.parseInt(idGadai));
@@ -89,7 +77,11 @@ public class GadaiController {
        gadai.setJatuhTempo(new java.sql.Date(new Long(jatuhTempo)));
        gadai.setJumlahPinjaman(Integer.parseInt(jumlahPinjaman));
        gadai.setNoIdentitas(new Customer(Integer.parseInt(noIdentitas)));
-       gadai.setIdStatus(new Status(idStatus));
+       //gadai.setIdBarang(new Barang(Short.valueOf(idBarang)));
+       //gadai.setIdStatus(new Status(idStatus));
+       
+        String[] bId = idBarang.split(" ");
+        gadai.setIdBarang((Barang) bDAO.getById(bId[0]));
        
         String[] jId = idStatus.split(" ");
         gadai.setIdStatus((Status) sDAO.getById(jId[0]));
@@ -97,7 +89,7 @@ public class GadaiController {
         return gDAO.update(gadai);
     }
     
-       public boolean insert(String id_gadai,String tanggal_pengajuan,String jatuh_tempo,String jumlah_pinjaman,String noIdentitas,String id_status)
+       public boolean insert(String id_gadai,String tanggal_pengajuan,String jatuh_tempo,String jumlah_pinjaman,String noIdentitas,String id_barang, String id_status)
     {
         Gadai gadd = new Gadai();
         gadd.setIdGadai(Integer.parseInt(id_gadai));
@@ -105,6 +97,7 @@ public class GadaiController {
         gadd.setJatuhTempo(new java.sql.Date(new Long(jatuh_tempo)));
         gadd.setJumlahPinjaman(Integer.parseInt(jumlah_pinjaman));
         gadd.setNoIdentitas(new Customer(Integer.parseInt(noIdentitas)));
+        gadd.setIdBarang(new Barang(Short.parseShort(id_barang)));
         gadd.setIdStatus(new Status(id_status));
         
         return gDAO.insert(gadd);
@@ -112,7 +105,7 @@ public class GadaiController {
     }
     
      
-     public boolean update(String id_gadai,String tanggal_pengajuan,String jatuh_tempo,String jumlah_pinjaman,String noIdentitas,String id_status)
+     public boolean update(String id_gadai,String tanggal_pengajuan,String jatuh_tempo,String jumlah_pinjaman,String noIdentitas,String id_barang,String id_status)
     {
         
         Gadai gadd = new Gadai();
@@ -121,6 +114,7 @@ public class GadaiController {
         gadd.setJatuhTempo(new java.sql.Date(new Long(jatuh_tempo)));
         gadd.setJumlahPinjaman(Integer.parseInt(jumlah_pinjaman));
         gadd.setNoIdentitas(new Customer(Integer.parseInt(noIdentitas)));
+        gadd.setIdBarang(new Barang(Short.parseShort(id_barang)));
         gadd.setIdStatus(new Status(id_status));
         
         return gDAO.insert(gadd);
@@ -131,6 +125,13 @@ public class GadaiController {
         sDAO.getAll().stream().map((object) -> (Status) object).forEachOrdered((status) -> {
             jComboBox.addItem(status.getIdStatus()+" - "
                     +status.getStatus());
+        });
+    }
+      
+       public void loadBrg(JComboBox jComboBox) {
+        bDAO.getAll().stream().map((object) -> (Barang) object).forEachOrdered((barang) -> {
+            jComboBox.addItem(barang.getIdBarang()+" - "
+                    +barang.getNamaBarang());
         });
     }
       

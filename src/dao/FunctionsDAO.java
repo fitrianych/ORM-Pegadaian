@@ -11,6 +11,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import tools.HibernateUtil;
 
 /**
  *
@@ -25,6 +26,7 @@ public class FunctionsDAO {
 
     public FunctionsDAO(SessionFactory factory) {
         this.factory = factory;
+        this.factory=HibernateUtil.getSessionFactory();
     }
     
          public boolean insert(Object object) {

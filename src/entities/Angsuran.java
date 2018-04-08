@@ -45,9 +45,9 @@ public class Angsuran implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date tanggalAngsuran;
     @Column(name = "JUMLAH_ANGSURAN")
-    private Long jumlahAngsuran;
+    private Integer jumlahAngsuran;
     @Column(name = "DENDA")
-    private Long denda;
+    private Integer denda;
     @JoinColumn(name = "NO_IDENTITAS", referencedColumnName = "NO_IDENTITAS")
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer noIdentitas;
@@ -78,19 +78,19 @@ public class Angsuran implements Serializable {
         this.tanggalAngsuran = tanggalAngsuran;
     }
 
-    public Long getJumlahAngsuran() {
+    public Integer getJumlahAngsuran() {
         return jumlahAngsuran;
     }
 
-    public void setJumlahAngsuran(Long jumlahAngsuran) {
+    public void setJumlahAngsuran(Integer jumlahAngsuran) {
         this.jumlahAngsuran = jumlahAngsuran;
     }
 
-    public Long getDenda() {
+    public Integer getDenda() {
         return denda;
     }
 
-    public void setDenda(Long denda) {
+    public void setDenda(Integer denda) {
         this.denda = denda;
     }
 
@@ -132,7 +132,7 @@ public class Angsuran implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Angsuran[ idAngsuran=" + idAngsuran + " ]";
+        return "" + idAngsuran + "";
     }
     
 }

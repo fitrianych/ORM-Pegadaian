@@ -7,9 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,12 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -40,11 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Gadai.findByJumlahPinjaman", query = "SELECT g FROM Gadai g WHERE g.jumlahPinjaman = :jumlahPinjaman")})
 public class Gadai implements Serializable {
 
-    @Column(name = "JUMLAH_PINJAMAN")
-    private Integer jumlahPinjaman;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gadai", fetch = FetchType.LAZY)
-    private List<DetailGadai> detailGadaiList;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -56,6 +47,11 @@ public class Gadai implements Serializable {
     @Column(name = "JATUH_TEMPO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date jatuhTempo;
+    @Column(name = "JUMLAH_PINJAMAN")
+    private Integer jumlahPinjaman;
+    @JoinColumn(name = "ID_BARANG", referencedColumnName = "ID_BARANG")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Barang idBarang;
     @JoinColumn(name = "NO_IDENTITAS", referencedColumnName = "NO_IDENTITAS")
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer noIdentitas;
@@ -66,19 +62,8 @@ public class Gadai implements Serializable {
     public Gadai() {
     }
 
-    
-
     public Gadai(Integer idGadai) {
         this.idGadai = idGadai;
-    }
-
-    public Gadai(Integer id_gadai, String tanggal_pengajuan, String jatuh_tempo, String jumlah_pinjam, Integer no_identitas, String id_status) {
-        this.idGadai=idGadai;
-        this.tanggalPengajuan=tanggalPengajuan;
-        this.jatuhTempo=jatuhTempo;
-        this.jumlahPinjaman=jumlahPinjaman;
-        this.noIdentitas=noIdentitas;
-        this.idStatus=idStatus;
     }
 
     public Integer getIdGadai() {
@@ -111,6 +96,14 @@ public class Gadai implements Serializable {
 
     public void setJumlahPinjaman(Integer jumlahPinjaman) {
         this.jumlahPinjaman = jumlahPinjaman;
+    }
+
+    public Barang getIdBarang() {
+        return idBarang;
+    }
+
+    public void setIdBarang(Barang idBarang) {
+        this.idBarang = idBarang;
     }
 
     public Customer getNoIdentitas() {
@@ -148,27 +141,10 @@ public class Gadai implements Serializable {
         }
         return true;
     }
- 
+
     @Override
     public String toString() {
-        return "entities.Gadai[ idGadai=" + idGadai + " ]";
-    }
-
-//    public Integer getJumlahPinjaman() {
-//        return jumlahPinjaman;
-//    }
-//
-//    public void setJumlahPinjaman(Integer jumlahPinjaman) {
-//        this.jumlahPinjaman = jumlahPinjaman;
-//    }
-
-    @XmlTransient
-    public List<DetailGadai> getDetailGadaiList() {
-        return detailGadaiList;
-    }
-
-    public void setDetailGadaiList(List<DetailGadai> detailGadaiList) {
-        this.detailGadaiList = detailGadaiList;
+        return "" + idGadai + "";
     }
     
 }

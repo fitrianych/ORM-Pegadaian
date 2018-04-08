@@ -35,6 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Barang.findByNamaBarang", query = "SELECT b FROM Barang b WHERE b.namaBarang = :namaBarang")})
 public class Barang implements Serializable {
 
+    @OneToMany(mappedBy = "idBarang", fetch = FetchType.LAZY)
+    private List<Gadai> gadaiList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -45,8 +48,7 @@ public class Barang implements Serializable {
     @JoinColumn(name = "ID_JENIS", referencedColumnName = "ID_JENIS")
     @ManyToOne(fetch = FetchType.LAZY)
     private JenisBarang idJenis;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "barang", fetch = FetchType.LAZY)
-    private List<DetailGadai> detailGadaiList;
+    
 
     public Barang() {
     }
@@ -84,15 +86,6 @@ public class Barang implements Serializable {
         this.idJenis = idJenis;
     }
 
-    @XmlTransient
-    public List<DetailGadai> getDetailGadaiList() {
-        return detailGadaiList;
-    }
-
-    public void setDetailGadaiList(List<DetailGadai> detailGadaiList) {
-        this.detailGadaiList = detailGadaiList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -115,7 +108,16 @@ public class Barang implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Barang[ idBarang=" + idBarang + " ]";
+        return "" + idBarang + " ";
+    }
+
+    @XmlTransient
+    public List<Gadai> getGadaiList() {
+        return gadaiList;
+    }
+
+    public void setGadaiList(List<Gadai> gadaiList) {
+        this.gadaiList = gadaiList;
     }
     
 }

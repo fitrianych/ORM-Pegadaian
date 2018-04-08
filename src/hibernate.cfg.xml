@@ -54,8 +54,6 @@ Contributor(s):
     <mapping class="entities.Angsuran"/>
     <mapping class="entities.Barang"/>
     <mapping class="entities.Customer"/>
-    <mapping class="entities.DetailGadai"/>
-    <mapping class="entities.DetailGadaiPK"/>
     <mapping class="entities.Gadai"/>
     <mapping class="entities.JenisBarang"/>
     <mapping class="entities.Status"/>

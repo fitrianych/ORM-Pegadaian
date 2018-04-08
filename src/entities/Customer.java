@@ -53,6 +53,7 @@ public class Customer implements Serializable {
     private String pekerjaan;
     @Column(name = "ALAMAT")
     private String alamat;
+    
     @OneToMany(mappedBy = "noIdentitas", fetch = FetchType.LAZY)
     private List<Gadai> gadaiList;
     @OneToMany(mappedBy = "noIdentitas", fetch = FetchType.LAZY)

@@ -55,7 +55,7 @@ public class BarangDAO implements InterfaceDAO{
 
     @Override
     public Object getById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.getById("from Barang where idBarang='" + id + "'");
     }
     
     public Object getByIdJns(String id){
