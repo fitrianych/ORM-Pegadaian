@@ -42,7 +42,7 @@ public class Customer implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "NO_IDENTITAS")
-    private BigDecimal noIdentitas;
+    private Integer noIdentitas;
     @Column(name = "NAMA")
     private String nama;
     @Column(name = "JENIS_KELAMIN")
@@ -61,13 +61,13 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(BigDecimal noIdentitas) {
+    public Customer(Integer noIdentitas) {
         this.noIdentitas = noIdentitas;
     }
 
    
 
-    public Customer(BigDecimal no_identitas, String nama, String jenis_kelamin, String no_telp, String pekerjaan, String alamat) {
+    public Customer(Integer no_identitas, String nama, String jenis_kelamin, String no_telp, String pekerjaan, String alamat) {
         this.noIdentitas = no_identitas;
         this.nama = nama;
         this.jenisKelamin = jenis_kelamin;
@@ -76,11 +76,11 @@ public class Customer implements Serializable {
         this.alamat = alamat;
     }
 
-    public BigDecimal getNoIdentitas() {
+    public Integer getNoIdentitas() {
         return noIdentitas;
     }
 
-    public void setNoIdentitas(BigDecimal noIdentitas) {
+    public void setNoIdentitas(Integer noIdentitas) {
         this.noIdentitas = noIdentitas;
     }
 
@@ -164,7 +164,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Customer[ noIdentitas=" + noIdentitas + " ]";
+        return "" + noIdentitas + "";
     }
     
 }

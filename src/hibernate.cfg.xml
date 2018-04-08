@@ -58,5 +58,6 @@ Contributor(s):
     <mapping class="entities.DetailGadaiPK"/>
     <mapping class="entities.Gadai"/>
     <mapping class="entities.JenisBarang"/>
+    <mapping class="entities.Status"/>
   </session-factory>
 </hibernate-configuration>

@@ -28,15 +28,15 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Status.findAll", query = "SELECT s FROM Status s")
-    , @NamedQuery(name = "Status.findByIdSatus", query = "SELECT s FROM Status s WHERE s.idSatus = :idSatus")
+    , @NamedQuery(name = "Status.findByIdStatus", query = "SELECT s FROM Status s WHERE s.idStatus = :idStatus")
     , @NamedQuery(name = "Status.findByStatus", query = "SELECT s FROM Status s WHERE s.status = :status")})
 public class Status implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "ID_SATUS")
-    private String idSatus;
+    @Column(name = "ID_STATUS")
+    private String idStatus;
     @Column(name = "STATUS")
     private String status;
     @OneToMany(mappedBy = "idStatus", fetch = FetchType.LAZY)
@@ -45,16 +45,16 @@ public class Status implements Serializable {
     public Status() {
     }
 
-    public Status(String idSatus) {
-        this.idSatus = idSatus;
+    public Status(String idStatus) {
+        this.idStatus = idStatus;
     }
 
-    public String getIdSatus() {
-        return idSatus;
+    public String getIdStatus() {
+        return idStatus;
     }
 
-    public void setIdSatus(String idSatus) {
-        this.idSatus = idSatus;
+    public void setIdStatus(String idStatus) {
+        this.idStatus = idStatus;
     }
 
     public String getStatus() {
@@ -77,7 +77,7 @@ public class Status implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idSatus != null ? idSatus.hashCode() : 0);
+        hash += (idStatus != null ? idStatus.hashCode() : 0);
         return hash;
     }
 
@@ -88,7 +88,7 @@ public class Status implements Serializable {
             return false;
         }
         Status other = (Status) object;
-        if ((this.idSatus == null && other.idSatus != null) || (this.idSatus != null && !this.idSatus.equals(other.idSatus))) {
+        if ((this.idStatus == null && other.idStatus != null) || (this.idStatus != null && !this.idStatus.equals(other.idStatus))) {
             return false;
         }
         return true;
@@ -96,7 +96,7 @@ public class Status implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Status[ idSatus=" + idSatus + " ]";
+        return "" + idStatus + "";
     }
     
 }

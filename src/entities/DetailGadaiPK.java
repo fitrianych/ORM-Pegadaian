@@ -18,9 +18,6 @@ import javax.persistence.Embeddable;
 public class DetailGadaiPK implements Serializable {
 
     @Basic(optional = false)
-    @Column(name = "ID_DETAIL_GADAI")
-    private int idDetailGadai;
-    @Basic(optional = false)
     @Column(name = "ID_GADAI")
     private int idGadai;
     @Basic(optional = false)
@@ -30,18 +27,9 @@ public class DetailGadaiPK implements Serializable {
     public DetailGadaiPK() {
     }
 
-    public DetailGadaiPK(int idDetailGadai, int idGadai, short idBarang) {
-        this.idDetailGadai = idDetailGadai;
+    public DetailGadaiPK(int idGadai, short idBarang) {
         this.idGadai = idGadai;
         this.idBarang = idBarang;
-    }
-
-    public int getIdDetailGadai() {
-        return idDetailGadai;
-    }
-
-    public void setIdDetailGadai(int idDetailGadai) {
-        this.idDetailGadai = idDetailGadai;
     }
 
     public int getIdGadai() {
@@ -63,7 +51,6 @@ public class DetailGadaiPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) idDetailGadai;
         hash += (int) idGadai;
         hash += (int) idBarang;
         return hash;
@@ -76,9 +63,6 @@ public class DetailGadaiPK implements Serializable {
             return false;
         }
         DetailGadaiPK other = (DetailGadaiPK) object;
-        if (this.idDetailGadai != other.idDetailGadai) {
-            return false;
-        }
         if (this.idGadai != other.idGadai) {
             return false;
         }
@@ -90,7 +74,7 @@ public class DetailGadaiPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.DetailGadaiPK[ idDetailGadai=" + idDetailGadai + ", idGadai=" + idGadai + ", idBarang=" + idBarang + " ]";
+        return "entities.DetailGadaiPK[ idGadai=" + idGadai + ", idBarang=" + idBarang + " ]";
     }
     
 }

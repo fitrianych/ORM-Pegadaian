@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DetailGadai.findAll", query = "SELECT d FROM DetailGadai d")
-    , @NamedQuery(name = "DetailGadai.findByIdDetailGadai", query = "SELECT d FROM DetailGadai d WHERE d.detailGadaiPK.idDetailGadai = :idDetailGadai")
+    , @NamedQuery(name = "DetailGadai.findByIdDetailGadai", query = "SELECT d FROM DetailGadai d WHERE d.idDetailGadai = :idDetailGadai")
     , @NamedQuery(name = "DetailGadai.findByIdGadai", query = "SELECT d FROM DetailGadai d WHERE d.detailGadaiPK.idGadai = :idGadai")
     , @NamedQuery(name = "DetailGadai.findByIdBarang", query = "SELECT d FROM DetailGadai d WHERE d.detailGadaiPK.idBarang = :idBarang")
     , @NamedQuery(name = "DetailGadai.findByKeterangan", query = "SELECT d FROM DetailGadai d WHERE d.keterangan = :keterangan")})
@@ -35,6 +35,8 @@ public class DetailGadai implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected DetailGadaiPK detailGadaiPK;
+    @Column(name = "ID_DETAIL_GADAI")
+    private Integer idDetailGadai;
     @Column(name = "KETERANGAN")
     private String keterangan;
     @JoinColumn(name = "ID_BARANG", referencedColumnName = "ID_BARANG", insertable = false, updatable = false)
@@ -51,8 +53,8 @@ public class DetailGadai implements Serializable {
         this.detailGadaiPK = detailGadaiPK;
     }
 
-    public DetailGadai(int idDetailGadai, int idGadai, short idBarang) {
-        this.detailGadaiPK = new DetailGadaiPK(idDetailGadai, idGadai, idBarang);
+    public DetailGadai(int idGadai, short idBarang) {
+        this.detailGadaiPK = new DetailGadaiPK(idGadai, idBarang);
     }
 
     public DetailGadaiPK getDetailGadaiPK() {
@@ -61,6 +63,14 @@ public class DetailGadai implements Serializable {
 
     public void setDetailGadaiPK(DetailGadaiPK detailGadaiPK) {
         this.detailGadaiPK = detailGadaiPK;
+    }
+
+    public Integer getIdDetailGadai() {
+        return idDetailGadai;
+    }
+
+    public void setIdDetailGadai(Integer idDetailGadai) {
+        this.idDetailGadai = idDetailGadai;
     }
 
     public String getKeterangan() {

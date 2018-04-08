@@ -22,7 +22,7 @@ public class CustomerController {
      public CustomerController() {
         this.cDAO = new CustomerDAO();
     }
-      public boolean insert(BigDecimal no_identitas, String nama, String jenis_kelamin, String no_telp, String pekerjaan, String alamat)
+      public boolean insert(Integer no_identitas, String nama, String jenis_kelamin, String no_telp, String pekerjaan, String alamat)
     {
         Customer r = new Customer(no_identitas, nama, jenis_kelamin,
                 no_telp, pekerjaan, alamat);
@@ -30,15 +30,15 @@ public class CustomerController {
     }
     
      
-     public boolean update(Long no_identitas, String nama, String jenis_kelamin, String no_telp, String pekerjaan, String alamat)
+     public boolean update(Integer no_identitas, String nama, String jenis_kelamin, String no_telp, String pekerjaan, String alamat)
     {
-        Customer cuss = new Customer(BigDecimal.valueOf(no_identitas), nama, jenis_kelamin, no_telp, pekerjaan, alamat);
+        Customer cuss = new Customer(no_identitas, nama, jenis_kelamin, no_telp, pekerjaan, alamat);
         return cDAO.update(cuss);
     }
      
      public boolean delete(String no_identitas)
     {
-        Customer cus1 = new Customer(new BigDecimal(no_identitas+""));
+        Customer cus1 = new Customer(new Integer(no_identitas+""));
         return cDAO.delete(cus1.getNoIdentitas());
     }
      

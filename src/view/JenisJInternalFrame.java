@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class JenisJInternalFrame extends javax.swing.JInternalFrame {
     private String[] header={
             "ID Jenis Barang","Jenis Barang"};
-    private String[] headerTable={"id_jenis",
+    private String[] headerTable={"","id_jenis",
             "nama_jenis"};
     public Jenis_BarangController jb;
     /**
@@ -26,7 +26,7 @@ public class JenisJInternalFrame extends javax.swing.JInternalFrame {
         jb = new Jenis_BarangController();
         jb.bindingAll(tblJns, header);
         
-        //reset();
+        reset();
     }
 
     /**
@@ -43,7 +43,6 @@ public class JenisJInternalFrame extends javax.swing.JInternalFrame {
         cmbJns = new javax.swing.JComboBox<>();
         cariJns = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tfIdJnsBarang = new javax.swing.JTextField();
@@ -85,11 +84,17 @@ public class JenisJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Form Jenis Barang");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Form Jenis Barang"));
 
         jLabel2.setText("ID Jenis Barang");
 
         jLabel3.setText("Jenis Barang");
+
+        tfIdJnsBarang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfIdJnsBarangKeyPressed(evt);
+            }
+        });
 
         btnSimpanJnsBarang.setText("Simpan");
         btnSimpanJnsBarang.addActionListener(new java.awt.event.ActionListener() {
@@ -112,27 +117,22 @@ public class JenisJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfIdJnsBarang)
-                            .addComponent(tfJnsBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
-                        .addGap(61, 61, 61)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSimpanJnsBarang)
-                            .addComponent(btnHapusJnsBarang))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfIdJnsBarang)
+                    .addComponent(tfJnsBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSimpanJnsBarang)
+                    .addComponent(btnHapusJnsBarang))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tfIdJnsBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,7 +142,7 @@ public class JenisJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(tfJnsBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHapusJnsBarang))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         tfJnsBrg.addActionListener(new java.awt.event.ActionListener() {
@@ -188,15 +188,15 @@ public class JenisJInternalFrame extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cariJnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariJnsActionPerformed
-        String kolom ="";
-       switch (cmbJns.getSelectedIndex()){
-           case 0:kolom="";break;
-           case 1:kolom="id_jenis";break;
-           case 2:kolom="nama_jenis";break;
-       }
+//        String kolom ="";
+//       switch (cmbJns.getSelectedIndex()){
+//           case 0:kolom="";break;
+//           case 1:kolom="id_jenis";break;
+//           case 2:kolom="nama_jenis";break;
+//       }
+
+        jb.bindingSearch(tblJns, header, headerTable[cmbJns.getSelectedIndex()], tfJnsBrg.getText());
         
-        jb.bindingSearch(tblJns, header, kolom, tfJnsBrg.getText());
-        System.out.println(cmbJns.getSelectedItem()+"");
     }//GEN-LAST:event_cariJnsActionPerformed
 
     private void tfJnsBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfJnsBrgActionPerformed
@@ -251,13 +251,17 @@ public class JenisJInternalFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnHapusJnsBarangActionPerformed
 
+    private void tfIdJnsBarangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdJnsBarangKeyPressed
+        btnHapusJnsBarang.setEnabled(true);
+        btnSimpanJnsBarang.setEnabled(true);
+    }//GEN-LAST:event_tfIdJnsBarangKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapusJnsBarang;
     private javax.swing.JButton btnSimpanJnsBarang;
     private javax.swing.JButton cariJns;
     private javax.swing.JComboBox<String> cmbJns;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -268,5 +272,12 @@ public class JenisJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfJnsBrg;
     // End of variables declaration//GEN-END:variables
 
-    
+    public void reset() {
+    tfIdJnsBarang.setText("");
+    tfJnsBarang.setText("");
+    cmbJns.setSelectedIndex(1);
+    tfJnsBrg.setText("");
+    btnSimpanJnsBarang.setEnabled(false);
+    btnHapusJnsBarang.setEnabled(false);
+}
 }
