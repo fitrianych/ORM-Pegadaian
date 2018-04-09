@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
     private String header[] = {"ID Gadai", "No. Identitas",
-        "Tanggal Pengajuan", "Jatuh Tempo", "Jumlah Pinjaman","Sisa", "Status"};
+        "Tanggal Pengajuan", "Jatuh Tempo", "Jumlah Pinjaman", "Status"};
 //    private String[] headerTable={"id_gadai","no_identitas",
 //            "tanggal_pengajuan","jatuh_tempo","jumlah_pinjaman","id_barang", "id_status"};
     
@@ -62,8 +62,6 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
         tfNoId = new javax.swing.JTextField();
         cmbStatus = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        tfSisa = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -140,8 +138,6 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Form Gadai");
 
-        jLabel7.setText("Sisa");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -180,16 +176,9 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnHapusGadai))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(108, 108, 108)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfJmlPinjaman, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                                    .addComponent(tfSisa))))))
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfJmlPinjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -197,9 +186,9 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfIdGadai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -220,14 +209,8 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4)
                             .addComponent(tfJmlPinjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(tfSisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                         .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cmbStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSimpanGadai)
@@ -285,8 +268,9 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
                 tfJatuhTempo.getDate().getTime()+ "",
                tfJmlPinjaman.getText(),tfNoId.getText(),
                //cmbBrg.getSelectedItem().toString(),
-                cmbStatus.getSelectedItem().toString(),
-                tfSisa.getText(),tfIdGadai.isEnabled());
+                cmbStatus.getSelectedItem().toString()
+               ,tfIdGadai.isEnabled()
+        );
         String pesan = "Gagal menambahkan data";
         if (hasil) {
             try {
@@ -311,7 +295,7 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
         tfTanggalPengajuan.setDate((Date) tblGadai.getValueAt(tblGadai.getSelectedRow(), 2));
         tfJatuhTempo.setDate((Date) tblGadai.getValueAt(tblGadai.getSelectedRow(), 3));
         tfJmlPinjaman.setText("" + tblGadai.getValueAt(tblGadai.getSelectedRow(), 4) + "");
-        tfSisa.setText("" + tblGadai.getValueAt(tblGadai.getSelectedRow(), 5) + "");
+        //tfSisa.setText("" + tblGadai.getValueAt(tblGadai.getSelectedRow(), 5) + "");
         tfIdGadai.setEnabled(false);
         tfNoId.setEnabled(false);
         btnHapusGadai.setEnabled(true);
@@ -355,7 +339,6 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -365,7 +348,6 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfJmlPinjaman;
     private javax.swing.JTextField tfNoId;
     private javax.swing.JTextField tfNoIdent;
-    private javax.swing.JTextField tfSisa;
     private com.toedter.calendar.JDateChooser tfTanggalPengajuan;
     // End of variables declaration//GEN-END:variables
         public void reset(){

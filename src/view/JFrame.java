@@ -6,6 +6,15 @@
 package view;
 
 import java.awt.Component;
+import java.io.File;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import oracle.net.aso.g;
 
 /**
@@ -31,6 +40,7 @@ public class JFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jDesktopPane = new javax.swing.JDesktopPane();
         jFrame = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
@@ -41,8 +51,12 @@ public class JFrame extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         jMenu2.setText("jMenu2");
+
+        jMenuItem7.setText("jMenuItem7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,6 +133,19 @@ public class JFrame extends javax.swing.JFrame {
 
         jFrame.add(jMenu5);
 
+        jMenu1.setText("Report");
+
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem8.setText("Customer");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
+        jFrame.add(jMenu1);
+
         setJMenuBar(jFrame);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,6 +198,28 @@ public class JFrame extends javax.swing.JFrame {
         jDesktopPane.add(d);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        try {
+                String path = "Report/CustomerReport.jasper";
+                String driver="oracle.jdbc.OracleDriver";
+                String konek="jdbc:oracle:thin:@localhost:1521:XE";
+                String user="system";
+                String password="1412";
+                HashMap parameter = new HashMap();
+                Class.forName(driver);
+                Connection conn = DriverManager.getConnection(konek,user,password);
+                File reportFile=new File(path);
+                InputStream jReport = this.getClass().getClassLoader().getResourceAsStream(reportFile.getPath());
+//                JasperReport jReport = (JasperReport) JRLoader.loadObject(reportFile.getPath());
+                JasperPrint jPrint = JasperFillManager.fillReport(jReport, parameter, conn);
+                JasperViewer.viewReport(jPrint, true);
+                JasperViewer.setDefaultLookAndFeelDecorated(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Laporan Tidak Dapat Dicetak!\n" + e.getMessage()
+                ,"Cetak Laporan", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -209,6 +258,7 @@ public class JFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JMenuBar jFrame;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -218,5 +268,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }

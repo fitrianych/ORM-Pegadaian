@@ -33,8 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Gadai.findByIdGadai", query = "SELECT g FROM Gadai g WHERE g.idGadai = :idGadai")
     , @NamedQuery(name = "Gadai.findByTanggalPengajuan", query = "SELECT g FROM Gadai g WHERE g.tanggalPengajuan = :tanggalPengajuan")
     , @NamedQuery(name = "Gadai.findByJatuhTempo", query = "SELECT g FROM Gadai g WHERE g.jatuhTempo = :jatuhTempo")
-    , @NamedQuery(name = "Gadai.findByJumlahPinjaman", query = "SELECT g FROM Gadai g WHERE g.jumlahPinjaman = :jumlahPinjaman")
-    , @NamedQuery(name = "Gadai.findBySisa", query = "SELECT g FROM Gadai g WHERE g.sisa = :sisa")})
+    , @NamedQuery(name = "Gadai.findByJumlahPinjaman", query = "SELECT g FROM Gadai g WHERE g.jumlahPinjaman = :jumlahPinjaman")})
 public class Gadai implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,8 +49,6 @@ public class Gadai implements Serializable {
     private Date jatuhTempo;
     @Column(name = "JUMLAH_PINJAMAN")
     private Integer jumlahPinjaman;
-    @Column(name = "SISA")
-    private Integer sisa;
     @JoinColumn(name = "NO_IDENTITAS", referencedColumnName = "NO_IDENTITAS")
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer noIdentitas;
@@ -98,14 +95,6 @@ public class Gadai implements Serializable {
         this.jumlahPinjaman = jumlahPinjaman;
     }
 
-    public Integer getSisa() {
-        return sisa;
-    }
-
-    public void setSisa(Integer sisa) {
-        this.sisa = sisa;
-    }
-
     public Customer getNoIdentitas() {
         return noIdentitas;
     }
@@ -144,7 +133,7 @@ public class Gadai implements Serializable {
 
     @Override
     public String toString() {
-        return "" + idGadai + " ";
+        return "entities.Gadai[ idGadai=" + idGadai + " ]";
     }
     
 }
