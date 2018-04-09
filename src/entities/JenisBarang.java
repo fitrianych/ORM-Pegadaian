@@ -101,7 +101,7 @@ public class JenisBarang implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.JenisBarang[ idJenis=" + idJenis + " ]";
+        return "" + idJenis + " ";
     }
     
 }

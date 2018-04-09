@@ -49,9 +49,6 @@ public class Gadai implements Serializable {
     private Date jatuhTempo;
     @Column(name = "JUMLAH_PINJAMAN")
     private Integer jumlahPinjaman;
-    @JoinColumn(name = "ID_BARANG", referencedColumnName = "ID_BARANG")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Barang idBarang;
     @JoinColumn(name = "NO_IDENTITAS", referencedColumnName = "NO_IDENTITAS")
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer noIdentitas;
@@ -98,14 +95,6 @@ public class Gadai implements Serializable {
         this.jumlahPinjaman = jumlahPinjaman;
     }
 
-    public Barang getIdBarang() {
-        return idBarang;
-    }
-
-    public void setIdBarang(Barang idBarang) {
-        this.idBarang = idBarang;
-    }
-
     public Customer getNoIdentitas() {
         return noIdentitas;
     }
@@ -144,19 +133,7 @@ public class Gadai implements Serializable {
 
     @Override
     public String toString() {
-        return "" + idGadai + "";
-    }
-
-    public void setIdGadai(String id_gadai) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setJatuhTempo(String jatuh_tempo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setIdStatus(String Status) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "" + idGadai + " ";
     }
     
 }

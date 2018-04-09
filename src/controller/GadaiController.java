@@ -25,12 +25,12 @@ import javax.swing.table.DefaultTableModel;
 public class GadaiController {
     private final GadaiDAO gDAO;
     private final StatusDAO sDAO;
-    private final BarangDAO bDAO;
+    //private final BarangDAO bDAO;
     
     public GadaiController() {
         this.gDAO = new GadaiDAO();
         this.sDAO = new StatusDAO();
-        this.bDAO = new BarangDAO();
+        //this.bDAO = new BarangDAO();
     }
 
     
@@ -56,7 +56,7 @@ public class GadaiController {
                 gad.getTanggalPengajuan(),
                 gad.getJatuhTempo(),
                 gad.getJumlahPinjaman(),
-                gad.getIdBarang().getNamaBarang(),
+                //gad.getIdBarang().getNamaBarang(),
                 gad.getIdStatus().getStatus()
             };
             m.addRow(data1);
@@ -69,7 +69,7 @@ public class GadaiController {
 //    }
     
       public boolean save(String idGadai,  String tanggalPengajuan, 
-              String jatuhTempo,String jumlahPinjaman,String noIdentitas, String idBarang, String idStatus,boolean isSave){
+              String jatuhTempo,String jumlahPinjaman,String noIdentitas, String idStatus,boolean isSave){
           
        Gadai gadai = new Gadai();
        gadai.setIdGadai(Integer.parseInt(idGadai));
@@ -80,8 +80,8 @@ public class GadaiController {
        //gadai.setIdBarang(new Barang(Short.valueOf(idBarang)));
        //gadai.setIdStatus(new Status(idStatus));
        
-        String[] bId = idBarang.split(" ");
-        gadai.setIdBarang((Barang) bDAO.getById(bId[0]));
+        //String[] bId = idBarang.split(" ");
+        //gadai.setIdBarang((Barang) bDAO.getById(bId[0]));
        
         String[] jId = idStatus.split(" ");
         gadai.setIdStatus((Status) sDAO.getById(jId[0]));
@@ -89,7 +89,7 @@ public class GadaiController {
         return gDAO.update(gadai);
     }
     
-       public boolean insert(String id_gadai,String tanggal_pengajuan,String jatuh_tempo,String jumlah_pinjaman,String noIdentitas,String id_barang, String id_status)
+       public boolean insert(String id_gadai,String tanggal_pengajuan,String jatuh_tempo,String jumlah_pinjaman,String noIdentitas, String id_status)
     {
         Gadai gadd = new Gadai();
         gadd.setIdGadai(Integer.parseInt(id_gadai));
@@ -97,7 +97,7 @@ public class GadaiController {
         gadd.setJatuhTempo(new java.sql.Date(new Long(jatuh_tempo)));
         gadd.setJumlahPinjaman(Integer.parseInt(jumlah_pinjaman));
         gadd.setNoIdentitas(new Customer(Integer.parseInt(noIdentitas)));
-        gadd.setIdBarang(new Barang(Short.parseShort(id_barang)));
+        //gadd.setIdBarang(new Barang(Short.parseShort(id_barang)));
         gadd.setIdStatus(new Status(id_status));
         
         return gDAO.insert(gadd);
@@ -105,7 +105,7 @@ public class GadaiController {
     }
     
      
-     public boolean update(String id_gadai,String tanggal_pengajuan,String jatuh_tempo,String jumlah_pinjaman,String noIdentitas,String id_barang,String id_status)
+     public boolean update(String id_gadai,String tanggal_pengajuan,String jatuh_tempo,String jumlah_pinjaman,String noIdentitas,String id_status)
     {
         
         Gadai gadd = new Gadai();
@@ -114,7 +114,7 @@ public class GadaiController {
         gadd.setJatuhTempo(new java.sql.Date(new Long(jatuh_tempo)));
         gadd.setJumlahPinjaman(Integer.parseInt(jumlah_pinjaman));
         gadd.setNoIdentitas(new Customer(Integer.parseInt(noIdentitas)));
-        gadd.setIdBarang(new Barang(Short.parseShort(id_barang)));
+        //gadd.setIdBarang(new Barang(Short.parseShort(id_barang)));
         gadd.setIdStatus(new Status(id_status));
         
         return gDAO.insert(gadd);
@@ -128,12 +128,12 @@ public class GadaiController {
         });
     }
       
-       public void loadBrg(JComboBox jComboBox) {
-        bDAO.getAll().stream().map((object) -> (Barang) object).forEachOrdered((barang) -> {
-            jComboBox.addItem(barang.getIdBarang()+" - "
-                    +barang.getNamaBarang());
-        });
-    }
+//       public void loadBrg(JComboBox jComboBox) {
+//        bDAO.getAll().stream().map((object) -> (Barang) object).forEachOrdered((barang) -> {
+//            jComboBox.addItem(barang.getIdBarang()+" - "
+//                    +barang.getNamaBarang());
+//        });
+//    }
       
       public boolean delete(String id) {
         return gDAO.delete(id);

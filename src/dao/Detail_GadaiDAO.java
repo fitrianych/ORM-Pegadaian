@@ -49,12 +49,12 @@ public class Detail_GadaiDAO implements InterfaceDAO{
 
     @Override
     public List<Object> search(String category, String search) {
-        return fdao.getAll("FROM DetailGadai WHERE id_gadai LIKE '%" + search + "%'");
+        return fdao.getAll("FROM DetailGadai WHERE idGadai LIKE '%" + search + "%'");
     }
 
     @Override
     public Object getById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return fdao.getById("from DetailGadai where idGadai='" + id + "'");
     }
     
 }

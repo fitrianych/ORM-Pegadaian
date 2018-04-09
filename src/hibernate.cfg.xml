@@ -52,10 +52,11 @@ Contributor(s):
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <property name="current_session_context_class">thread</property>
     <mapping class="entities.Angsuran"/>
-    <mapping class="entities.Barang"/>
     <mapping class="entities.Customer"/>
-    <mapping class="entities.Gadai"/>
     <mapping class="entities.JenisBarang"/>
     <mapping class="entities.Status"/>
+    <mapping class="entities.DetailGadai"/>
+    <mapping class="entities.Gadai"/>
+    <mapping class="entities.Barang"/>
   </session-factory>
 </hibernate-configuration>

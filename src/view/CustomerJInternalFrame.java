@@ -346,7 +346,7 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
         tfJenisKelamin.setText("");
         tfPekerjaan.setText("");
         tfAlamat.setText("");
-        
+        tfNoTelepon.setText("");
         btnHapus.setEnabled(false);
         btnSimpan.setEnabled(false); 
         tfNoIdentitas.setEnabled(true);

@@ -5,17 +5,28 @@
  */
 package view;
 
+import controller.Detail_GadaiController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fitriany Chairunnisa
  */
 public class DetailJInternalFrame extends javax.swing.JInternalFrame {
-
+     private String header[] = {"ID Detail Barang","ID Gadai", "Barang",
+        "Keterangan"};
+     public Detail_GadaiController det;
     /**
      * Creates new form DetailJInternalFrame
      */
     public DetailJInternalFrame() {
         initComponents();
+        det = new Detail_GadaiController();
+        det.bindingAll(tblDetail, header);
+        det.loadBarang(cmbBarangDet);
+        //gadai.loadBrg(cmbBrg);
+        
+       // reset();
     }
 
     /**
@@ -27,21 +38,233 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tfCariDetail = new javax.swing.JTextField();
+        btnCariDet = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDetail = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        tfIdGadaiDet = new javax.swing.JTextField();
+        cmbBarangDet = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tfKeterangan = new javax.swing.JTextArea();
+        btnSimpanDetail = new javax.swing.JButton();
+        btnHapusDetail = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        tfIdDetailBrg = new javax.swing.JTextField();
+
+        setTitle("Detail Barang");
+
+        tfCariDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCariDetailActionPerformed(evt);
+            }
+        });
+
+        btnCariDet.setText("Cari");
+        btnCariDet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariDetActionPerformed(evt);
+            }
+        });
+
+        tblDetail.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblDetail);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Form Detail Barang");
+
+        jLabel2.setText("ID Gadai");
+
+        jLabel3.setText("Barang");
+
+        jLabel4.setText("Keterangan");
+
+        tfKeterangan.setColumns(20);
+        tfKeterangan.setRows(5);
+        jScrollPane2.setViewportView(tfKeterangan);
+
+        btnSimpanDetail.setText("Simpan");
+        btnSimpanDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanDetailActionPerformed(evt);
+            }
+        });
+
+        btnHapusDetail.setText("Hapus");
+        btnHapusDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusDetailActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("ID Detail Barang");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfIdGadaiDet, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbBarangDet, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSimpanDetail)
+                                    .addComponent(btnHapusDetail))
+                                .addGap(14, 14, 14))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(tfIdDetailBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(tfIdDetailBrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel2)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnSimpanDetail)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnHapusDetail))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(tfIdGadaiDet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbBarangDet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 661, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tfCariDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCariDet))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfCariDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCariDet))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tfCariDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariDetailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCariDetailActionPerformed
+
+    private void btnSimpanDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanDetailActionPerformed
+        boolean hasil = false;
+        hasil = det.save(tfIdDetailBrg.getText(),tfIdGadaiDet.getText(),
+                //(Short.parseShort(tfIdBarang.getText())), 
+                tfKeterangan.getText(), 
+                cmbBarangDet.getSelectedItem().toString(),
+                    tfIdDetailBrg.isEnabled());
+        String pesan = "Gagal menyimpan data";
+        if (hasil) {
+            pesan = "Berhasil menyimpan data";
+        }
+        JOptionPane.showMessageDialog(this, pesan);
+        det.bindingAll(tblDetail, header);
+       // reset();
+    }//GEN-LAST:event_btnSimpanDetailActionPerformed
+
+    private void btnHapusDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusDetailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHapusDetailActionPerformed
+
+    private void btnCariDetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariDetActionPerformed
+         String kolom ="";
+       switch (tblDetail.getSelectedColumn()){
+           case 0:kolom="id_gadai";break;
+           
+       }
+        
+        det.bindingSearch(tblDetail, header, kolom, tfCariDetail.getText());
+    }//GEN-LAST:event_btnCariDetActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCariDet;
+    private javax.swing.JButton btnHapusDetail;
+    private javax.swing.JButton btnSimpanDetail;
+    private javax.swing.JComboBox<String> cmbBarangDet;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblDetail;
+    private javax.swing.JTextField tfCariDetail;
+    private javax.swing.JTextField tfIdDetailBrg;
+    private javax.swing.JTextField tfIdGadaiDet;
+    private javax.swing.JTextArea tfKeterangan;
     // End of variables declaration//GEN-END:variables
 }

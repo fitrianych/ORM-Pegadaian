@@ -6,9 +6,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,10 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,9 +31,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Barang.findByNamaBarang", query = "SELECT b FROM Barang b WHERE b.namaBarang = :namaBarang")})
 public class Barang implements Serializable {
 
-    @OneToMany(mappedBy = "idBarang", fetch = FetchType.LAZY)
-    private List<Gadai> gadaiList;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -48,7 +41,6 @@ public class Barang implements Serializable {
     @JoinColumn(name = "ID_JENIS", referencedColumnName = "ID_JENIS")
     @ManyToOne(fetch = FetchType.LAZY)
     private JenisBarang idJenis;
-    
 
     public Barang() {
     }
@@ -58,8 +50,8 @@ public class Barang implements Serializable {
     }
 
     public Barang(Short idBarang, String namaBarang) {
-       this.idBarang = idBarang;
-       this.namaBarang = namaBarang;
+        this.idBarang=idBarang;
+        this.namaBarang=namaBarang;
     }
 
     public Short getIdBarang() {
@@ -109,15 +101,6 @@ public class Barang implements Serializable {
     @Override
     public String toString() {
         return "" + idBarang + " ";
-    }
-
-    @XmlTransient
-    public List<Gadai> getGadaiList() {
-        return gadaiList;
-    }
-
-    public void setGadaiList(List<Gadai> gadaiList) {
-        this.gadaiList = gadaiList;
     }
     
 }
