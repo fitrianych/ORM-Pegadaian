@@ -113,6 +113,12 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Alamat");
 
+        tfNoIdentitas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfNoIdentitasKeyPressed(evt);
+            }
+        });
+
         btnSimpan.setText("Simpan");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,6 +309,11 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
         }
         reset();
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void tfNoIdentitasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNoIdentitasKeyPressed
+        btnHapus.setEnabled(true);
+        btnSimpan.setEnabled(true);
+    }//GEN-LAST:event_tfNoIdentitasKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

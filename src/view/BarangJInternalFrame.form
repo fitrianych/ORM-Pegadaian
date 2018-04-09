@@ -218,6 +218,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfIdBarang">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdBarangKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfNamaBarang">
           <Events>
