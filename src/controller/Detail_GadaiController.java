@@ -9,6 +9,7 @@ import dao.BarangDAO;
 import dao.Detail_GadaiDAO;
 import entities.Barang;
 import entities.DetailGadai;
+import entities.Gadai;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -55,9 +56,10 @@ public class Detail_GadaiController {
     
       public boolean save(String idDetailGadai, String idGadai, String idBarang, String keterangan,boolean isSave){
         DetailGadai dg = new DetailGadai
-        (Integer.parseInt(idDetailGadai),Integer.parseInt(idGadai), keterangan);
+        (Integer.parseInt(idDetailGadai), keterangan);
         String[] bId = idBarang.split(" ");
         //String[] lId = LocationId.split(" ");
+        dg.setIdGadai(new Gadai(Integer.valueOf(idGadai)));
         dg.setIdBarang((Barang) bDAO.getById(bId[0]));
         //departments.setLocationId((Locations) lDAO.getById(lId[0]));
         if (isSave)return bDAO.insert(dg);

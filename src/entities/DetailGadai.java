@@ -52,10 +52,9 @@ public class DetailGadai implements Serializable {
         this.idDetailGadai = idDetailGadai;
     }
 
-    public DetailGadai(Integer idDetailGadai, Integer idGadai,String keterangan) {
-       this.idDetailGadai=this.idDetailGadai;
-       this.idGadai=this.idGadai;
-       this.keterangan=this.keterangan;
+    public DetailGadai(Integer idDetailGadai,String keterangan) {
+       this.idDetailGadai=idDetailGadai;
+       this.keterangan=keterangan;
     }
 
     public String getKeterangan() {

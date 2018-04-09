@@ -220,10 +220,9 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
     private void btnSimpanDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanDetailActionPerformed
         boolean hasil = false;
         hasil = det.save(tfIdDetailBrg.getText(),tfIdGadaiDet.getText(),
-                //(Short.parseShort(tfIdBarang.getText())), 
-                tfKeterangan.getText(), 
                 cmbBarangDet.getSelectedItem().toString(),
-                    tfIdDetailBrg.isEnabled());
+                tfKeterangan.getText(), 
+                tfIdDetailBrg.isEnabled());
         String pesan = "Gagal menyimpan data";
         if (hasil) {
             pesan = "Berhasil menyimpan data";

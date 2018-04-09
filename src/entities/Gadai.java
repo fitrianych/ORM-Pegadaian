@@ -52,7 +52,7 @@ public class Gadai implements Serializable {
     @JoinColumn(name = "NO_IDENTITAS", referencedColumnName = "NO_IDENTITAS")
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer noIdentitas;
-    @JoinColumn(name = "ID_STATUS", referencedColumnName = "ID_STATUS")
+    @JoinColumn(name = "STATUS", referencedColumnName = "ID_STATUS")
     @ManyToOne(fetch = FetchType.LAZY)
     private Status idStatus;
 

@@ -55,7 +55,7 @@ public class BarangDAO implements InterfaceDAO{
 
     @Override
     public Object getById(String id) {
-        return fdao.getById("from Barang where idBarang='" + id + "'");
+        return fdao.getById("from Barang where idBarang=" + id);
     }
     
     public Object getByIdJns(String id){
