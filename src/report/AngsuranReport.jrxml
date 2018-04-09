@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0398b0b6-2fae-4177-b585-b17f51c4077c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     ANGSURAN."ID_ANGSURAN" AS ANGSURAN_ID_ANGSURAN,
+     ANGSURAN."TANGGAL_ANGSURAN" AS ANGSURAN_TANGGAL_ANGSURAN,
+     ANGSURAN."JUMLAH_ANGSURAN" AS ANGSURAN_JUMLAH_ANGSURAN,
+     ANGSURAN."DENDA" AS ANGSURAN_DENDA,
+     ANGSURAN."NO_IDENTITAS" AS ANGSURAN_NO_IDENTITAS,
+     CUSTOMER."NAMA" AS CUSTOMER_NAMA,
+     GADAI."ID_GADAI" AS GADAI_ID_GADAI,
+     GADAI."TANGGAL_PENGAJUAN" AS GADAI_TANGGAL_PENGAJUAN,
+     GADAI."JATUH_TEMPO" AS GADAI_JATUH_TEMPO,
+     GADAI."JUMLAH_PINJAMAN" AS GADAI_JUMLAH_PINJAMAN
+FROM
+     "HR"."CUSTOMER" CUSTOMER INNER JOIN "HR"."ANGSURAN" ANGSURAN ON CUSTOMER."NO_IDENTITAS" = ANGSURAN."NO_IDENTITAS"
+     INNER JOIN "HR"."GADAI" GADAI ON CUSTOMER."NO_IDENTITAS" = GADAI."NO_IDENTITAS"
+     AND GADAI."ID_GADAI" = ANGSURAN."ID_GADAI"]]>
+	</queryString>
+	<field name="ANGSURAN_ID_ANGSURAN" class="java.lang.String"/>
+	<field name="ANGSURAN_TANGGAL_ANGSURAN" class="java.sql.Timestamp"/>
+	<field name="ANGSURAN_JUMLAH_ANGSURAN" class="java.math.BigDecimal"/>
+	<field name="ANGSURAN_DENDA" class="java.math.BigDecimal"/>
+	<field name="ANGSURAN_NO_IDENTITAS" class="java.math.BigDecimal"/>
+	<field name="CUSTOMER_NAMA" class="java.lang.String"/>
+	<field name="GADAI_ID_GADAI" class="java.math.BigDecimal"/>
+	<field name="GADAI_TANGGAL_PENGAJUAN" class="java.sql.Timestamp"/>
+	<field name="GADAI_JATUH_TEMPO" class="java.sql.Timestamp"/>
+	<field name="GADAI_JUMLAH_PINJAMAN" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="125" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="210" height="44" uuid="6a05cfe3-9613-4a7f-b69c-4c7b9b834aff"/>
+				<imageExpression><![CDATA["E:\\Icon Pegadaian\\logo-pegadaian.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="193" y="44" width="272" height="74" uuid="53def964-9691-457b-845f-843e612146d0"/>
+				<textElement>
+					<font fontName="Gabriola" size="36"/>
+				</textElement>
+				<text><![CDATA[Data Angsuran]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="455" y="15" width="100" height="20" uuid="212746d2-2d68-449b-816d-8c23f40487f4"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="61" height="20" uuid="e844027b-464f-43c5-a881-17556a8fd1f5"/>
+				<text><![CDATA[ID Angsuran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="223" y="0" width="81" height="20" uuid="b51530a7-20bb-4110-a688-d6bc5baafd75"/>
+				<text><![CDATA[Jml Angsuran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="0" width="76" height="20" uuid="89fab832-f484-487b-8ece-eab88c983490"/>
+				<text><![CDATA[No. Identitas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="0" width="88" height="20" uuid="3a7f20c1-fc8d-4d82-8e9a-9f3269bc81e6"/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="73" height="20" uuid="c3a989a2-bdd3-440e-b568-3509f21cf05a"/>
+				<text><![CDATA[Jatuh Tempo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="0" width="90" height="20" uuid="c7b81e1f-e83f-449a-9787-84406f80c0aa"/>
+				<text><![CDATA[ID Gadai Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="0" width="86" height="20" uuid="a56fbf90-3685-43ba-8a07-dc51048068a2"/>
+				<text><![CDATA[Tgl Angsuran]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="61" height="20" uuid="09a1c443-209e-4a03-ac8b-e0a58ee61845"/>
+				<textFieldExpression><![CDATA[$F{ANGSURAN_ID_ANGSURAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="0" width="86" height="20" uuid="6a907cf7-9182-44fb-82f6-0d10c817b9cb"/>
+				<textFieldExpression><![CDATA[$F{ANGSURAN_TANGGAL_ANGSURAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="223" y="0" width="81" height="20" uuid="1cf4c476-19eb-4dfa-9367-d3a9008187e5"/>
+				<textFieldExpression><![CDATA[$F{ANGSURAN_JUMLAH_ANGSURAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="0" width="76" height="20" uuid="e3ab9e14-8c9d-48ad-9b82-994b247007d5"/>
+				<textFieldExpression><![CDATA[$F{ANGSURAN_NO_IDENTITAS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="137" y="0" width="88" height="20" uuid="e90779a4-a84c-4210-b0ed-c6d662995710"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_NAMA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="73" height="20" uuid="fff1b865-a641-4301-93e5-12afa8f42229"/>
+				<textFieldExpression><![CDATA[$F{GADAI_JATUH_TEMPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="491" y="0" width="37" height="20" uuid="e3e97119-62b1-4aa0-81da-a6959f7c4455"/>
+				<textFieldExpression><![CDATA[$F{GADAI_ID_GADAI}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="423" y="21" width="80" height="20" uuid="744da48c-3618-4798-9297-05d2c1ac94e1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="503" y="21" width="40" height="20" uuid="8a9c7351-a7db-49a6-b1d6-cdd977373112"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

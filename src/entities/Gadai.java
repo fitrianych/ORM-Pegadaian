@@ -133,7 +133,7 @@ public class Gadai implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Gadai[ idGadai=" + idGadai + " ]";
+        return "" + idGadai + " ";
     }
     
 }

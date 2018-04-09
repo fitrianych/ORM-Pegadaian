@@ -24,82 +24,82 @@ FROM
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="120" splitType="Stretch">
+			<image>
+				<reportElement x="347" y="2" width="210" height="44" uuid="129f51c1-34c4-4064-8bf3-0740c5bdafa6"/>
+				<imageExpression><![CDATA["E:\\Icon Pegadaian\\logo-pegadaian.jpg"]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement x="159" y="16" width="243" height="63" uuid="f6df5cf6-ebb9-4d6e-8e00-36e366a4818b"/>
+				<reportElement x="183" y="46" width="272" height="74" uuid="f6df5cf6-ebb9-4d6e-8e00-36e366a4818b"/>
 				<textElement>
-					<font size="36"/>
+					<font fontName="Gabriola" size="36"/>
 				</textElement>
 				<text><![CDATA[Data Customer]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<textField pattern="dd/MM/yyyy HH.mm.ss">
-				<reportElement x="455" y="15" width="100" height="20" uuid="96b62da1-985a-48e0-9f58-8494598cc83e"/>
+				<reportElement x="455" y="10" width="100" height="20" uuid="96b62da1-985a-48e0-9f58-8494598cc83e"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="44" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="21" width="72" height="20" uuid="d1167ff6-61dd-44c8-b7d4-2e740f66213e"/>
-				<text><![CDATA[No Identitas]]></text>
+				<reportElement x="0" y="10" width="100" height="20" uuid="74a4621f-5790-463b-9856-b1a27c134d3a"/>
+				<text><![CDATA[No. Identitas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="72" y="21" width="100" height="20" uuid="e3d78bcd-8272-4921-a6a0-b1d1afc007a2"/>
+				<reportElement x="117" y="10" width="100" height="20" uuid="3f22e9e9-1fd0-443d-93eb-10f29552511a"/>
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="172" y="21" width="100" height="20" uuid="698a2fc3-eced-4c2a-8503-a8ed73c08ae6"/>
-				<text><![CDATA[No. Telepon]]></text>
+				<reportElement x="227" y="10" width="100" height="20" uuid="69a78b86-1bb3-4272-ba7f-fa6722db1a4a"/>
+				<text><![CDATA[No.Telepon]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="272" y="20" width="100" height="20" uuid="e53f42d3-740f-46dd-ad2e-37d4dd173a82"/>
+				<reportElement x="337" y="10" width="100" height="20" uuid="b5b3cb33-c415-495f-9689-895b8adbd78d"/>
 				<text><![CDATA[Pekerjaan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="372" y="20" width="100" height="20" uuid="32c37d50-ddbd-47e8-912a-b08123553448"/>
+				<reportElement x="455" y="10" width="100" height="20" uuid="39c674fb-4250-4a2b-b51a-ea5b6722a099"/>
 				<text><![CDATA[Alamat]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="472" y="20" width="100" height="20" uuid="63e1c1fa-4e4e-402f-a714-8c3d041f46d5"/>
-				<text><![CDATA[Jenis Kelamin]]></text>
-			</staticText>
+			<textField>
+				<reportElement x="103" y="427" width="100" height="20" uuid="9cca4062-eb5b-4f89-b83a-2df26998b7cc"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="44" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="18" width="72" height="20" uuid="5860f562-f081-428d-83fb-30082e7abf5e"/>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ecabb4f9-b40e-45ea-b475-d7a74eb7186f"/>
 				<textFieldExpression><![CDATA[$F{CUSTOMER_NO_IDENTITAS}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="72" y="18" width="100" height="20" uuid="eb468a71-4535-4c0b-996f-8aefde30edfb"/>
+				<reportElement x="117" y="0" width="100" height="20" uuid="14b942e8-d4b0-4826-875e-f1483a2618f9"/>
 				<textFieldExpression><![CDATA[$F{CUSTOMER_NAMA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="172" y="18" width="100" height="20" uuid="ce0ce076-34b1-44c0-b7fb-92dda96cc113"/>
+				<reportElement x="227" y="0" width="100" height="20" uuid="f293c9c1-8d57-4578-bc5f-1798d6fd5215"/>
 				<textFieldExpression><![CDATA[$F{CUSTOMER_NO_TELP}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="272" y="18" width="100" height="20" uuid="16c93e1b-c09a-451e-9923-d2d004d21284"/>
+				<reportElement x="337" y="0" width="100" height="20" uuid="28a07ba1-7779-46fa-9159-b1a3b75f5f39"/>
 				<textFieldExpression><![CDATA[$F{CUSTOMER_PEKERJAAN}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="372" y="18" width="100" height="20" uuid="60b4d1a1-5591-4b02-b3e4-c5bda49d64a4"/>
-				<textFieldExpression><![CDATA[$F{CUSTOMER_PEKERJAAN}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="472" y="18" width="100" height="20" uuid="4caf1675-1481-4440-9234-ebab7b693beb"/>
-				<textFieldExpression><![CDATA[$F{CUSTOMER_JENIS_KELAMIN}]]></textFieldExpression>
+				<reportElement x="455" y="0" width="100" height="20" uuid="8177c3bb-e2da-40f7-9c67-f1f2f59342c7"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_ALAMAT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="32" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
