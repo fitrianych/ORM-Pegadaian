@@ -42,7 +42,7 @@ public class JFrame extends javax.swing.JFrame {
 
         jMenu2 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jDesktopPane = new javax.swing.JDesktopPane();
+        jDesktopPane = new CIGambarDesktop();
         jFrame = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -55,6 +55,7 @@ public class JFrame extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
 
         jMenu2.setText("jMenu2");
 
@@ -63,20 +64,20 @@ public class JFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jDesktopPane.setBackground(new java.awt.Color(255, 102, 102));
-        jDesktopPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jDesktopPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
         jDesktopPane.setLayout(jDesktopPaneLayout);
         jDesktopPaneLayout.setHorizontalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 673, Short.MAX_VALUE)
+            .addGap(0, 677, Short.MAX_VALUE)
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 472, Short.MAX_VALUE)
         );
 
-        jFrame.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jFrame.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jMenu4.setText("Master");
 
@@ -159,6 +160,15 @@ public class JFrame extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem9);
+
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem10.setText("Gadai");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem10);
 
         jFrame.add(jMenu1);
 
@@ -258,6 +268,28 @@ public class JFrame extends javax.swing.JFrame {
         }    
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        try {
+                String path = "Report/GadaiReport.jasper";
+                String driver="oracle.jdbc.OracleDriver";
+                String konek="jdbc:oracle:thin:@localhost:1521:XE";
+                String user="system";
+                String password="1412";
+                HashMap parameter = new HashMap();
+                Class.forName(driver);
+                Connection conn = DriverManager.getConnection(konek,user,password);
+                File reportFile=new File(path);
+                InputStream jReport = this.getClass().getClassLoader().getResourceAsStream(reportFile.getPath());
+//                JasperReport jReport = (JasperReport) JRLoader.loadObject(reportFile.getPath());
+                JasperPrint jPrint = JasperFillManager.fillReport(jReport, parameter, conn);
+                JasperViewer.viewReport(jPrint, true);
+                JasperViewer.setDefaultLookAndFeelDecorated(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Laporan Tidak Dapat Dicetak!\n" + e.getMessage()
+                ,"Cetak Laporan", JOptionPane.ERROR_MESSAGE);
+        }    
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -301,6 +333,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
