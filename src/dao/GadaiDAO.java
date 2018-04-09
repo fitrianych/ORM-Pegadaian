@@ -45,7 +45,7 @@ public class GadaiDAO implements InterfaceDAO{
 
     @Override
     public List<Object> getAll() {
-        return fdao.getAll("FROM Gadai");
+        return fdao.getAll("FROM Gadai order by idGadai asc");
     }
 
     @Override

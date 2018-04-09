@@ -56,7 +56,7 @@ public class GadaiController {
                 gad.getTanggalPengajuan(),
                 gad.getJatuhTempo(),
                 gad.getJumlahPinjaman(),
-                //gad.getIdBarang().getNamaBarang(),
+                gad.getSisa(),
                 gad.getIdStatus().getStatus()
             };
             m.addRow(data1);
@@ -69,7 +69,7 @@ public class GadaiController {
 //    }
     
       public boolean save(String idGadai,  String tanggalPengajuan, 
-              String jatuhTempo,String jumlahPinjaman,String noIdentitas, String idStatus,boolean isSave){
+              String jatuhTempo,String jumlahPinjaman,String noIdentitas,String idStatus,String sisa, boolean isSave){
           
        Gadai gadai = new Gadai();
        gadai.setIdGadai(Integer.parseInt(idGadai));
@@ -77,6 +77,7 @@ public class GadaiController {
        gadai.setJatuhTempo(new java.sql.Date(new Long(jatuhTempo)));
        gadai.setJumlahPinjaman(Integer.parseInt(jumlahPinjaman));
        gadai.setNoIdentitas(new Customer(Integer.parseInt(noIdentitas)));
+       
        //gadai.setIdBarang(new Barang(Short.valueOf(idBarang)));
        //gadai.setIdStatus(new Status(idStatus));
        
@@ -85,6 +86,8 @@ public class GadaiController {
        
         String[] jId = idStatus.split(" ");
         gadai.setIdStatus((Status) sDAO.getById(jId[0]));
+        
+        gadai.setSisa(Integer.parseInt(sisa));
         if (isSave)return gDAO.insert(gadai);
         return gDAO.update(gadai);
     }

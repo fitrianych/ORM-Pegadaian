@@ -5,6 +5,7 @@
  */
 package dao;
 
+import entities.DetailGadai;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,12 +40,12 @@ public class Detail_GadaiDAO implements InterfaceDAO{
 
     @Override
     public boolean delete(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return fdao.delete(DetailGadai.class, Integer.parseInt(object.toString()));
     }
 
     @Override
     public List<Object> getAll() {
-        return fdao.getAll("FROM DetailGadai");
+        return fdao.getAll("FROM DetailGadai order by idDetailGadai asc");
     }
 
     @Override

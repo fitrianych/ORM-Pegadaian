@@ -46,7 +46,7 @@ public class CustomerDAO implements InterfaceDAO{
 
     @Override
     public List<Object> getAll() {
-        return fdao.getAll("FROM Customer");
+        return fdao.getAll("FROM Customer order by noIdentitas asc");
     }
 
     @Override

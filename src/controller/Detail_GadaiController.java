@@ -59,7 +59,7 @@ public class Detail_GadaiController {
         (Integer.parseInt(idDetailGadai), keterangan);
         String[] bId = idBarang.split(" ");
         //String[] lId = LocationId.split(" ");
-        dg.setIdGadai(new Gadai(Integer.valueOf(idGadai)));
+        dg.setIdGadai(new Gadai(Integer.parseInt(idGadai)));
         dg.setIdBarang((Barang) bDAO.getById(bId[0]));
         //departments.setLocationId((Locations) lDAO.getById(lId[0]));
         if (isSave)return bDAO.insert(dg);
@@ -71,5 +71,8 @@ public class Detail_GadaiController {
             jComboBox.addItem(barang.getIdBarang()+" - "
                     +barang.getNamaBarang()+" " );
         });
+    }
+        public boolean delete(String id) {
+        return dDAO.delete(id);
     }
 }

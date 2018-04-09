@@ -26,7 +26,7 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
         det.loadBarang(cmbBarangDet);
         //gadai.loadBrg(cmbBrg);
         
-       // reset();
+        reset();
     }
 
     /**
@@ -40,8 +40,6 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
 
         tfCariDetail = new javax.swing.JTextField();
         btnCariDet = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblDetail = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -55,7 +53,13 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
         btnHapusDetail = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         tfIdDetailBrg = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblDetail = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Detail Barang");
 
         tfCariDetail.addActionListener(new java.awt.event.ActionListener() {
@@ -70,19 +74,6 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
                 btnCariDetActionPerformed(evt);
             }
         });
-
-        tblDetail.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblDetail);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -114,6 +105,12 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
         });
 
         jLabel5.setText("ID Detail Barang");
+
+        tfIdDetailBrg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfIdDetailBrgKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -175,8 +172,26 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
+
+        tblDetail.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblDetail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDetailMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblDetail);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,7 +200,7 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -193,7 +208,7 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCariDet))
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 458, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -203,9 +218,9 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfCariDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCariDet))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -229,11 +244,27 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
         }
         JOptionPane.showMessageDialog(this, pesan);
         det.bindingAll(tblDetail, header);
-       // reset();
+        reset();
     }//GEN-LAST:event_btnSimpanDetailActionPerformed
 
     private void btnHapusDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusDetailActionPerformed
-        // TODO add your handling code here:
+       int i = JOptionPane.showConfirmDialog(this, "Apakah Anda Yakin Ingin dihapus?");
+        if (i == 0) {
+            try {
+                String pesan = "Gagal hapus";
+                boolean hasil = det.delete(tfIdDetailBrg.getText());
+                if (hasil) {
+                    pesan = "Hore Berhasil";
+                    reset();
+                }
+                JOptionPane.showMessageDialog(this, pesan);
+                det.bindingAll(tblDetail, header);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }//GEN-LAST:event_btnHapusDetailActionPerformed
 
     private void btnCariDetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariDetActionPerformed
@@ -245,6 +276,23 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
         
         det.bindingSearch(tblDetail, header, kolom, tfCariDetail.getText());
     }//GEN-LAST:event_btnCariDetActionPerformed
+
+    private void tblDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDetailMouseClicked
+        tfIdDetailBrg.setText(tblDetail.getValueAt(tblDetail.getSelectedRow(), 0) + "");
+        tfIdGadaiDet.setText(tblDetail.getValueAt(tblDetail.getSelectedRow(), 1) + "");
+        cmbBarangDet.setSelectedItem(tblDetail.getValueAt(tblDetail.getSelectedRow(),2) + "") ;
+        tfKeterangan.setText(tblDetail.getValueAt(tblDetail.getSelectedRow(), 3) + "");
+        //cmbCountry.getSelectedItem(tblLocation.getValueAt(tblLocation.getSelectedRow(), 6)+ "") ;
+        tfIdGadaiDet.setEnabled(false);
+        tfIdDetailBrg.setEnabled(false);
+        btnHapusDetail.setEnabled(true);
+        btnSimpanDetail.setEnabled(true);
+    }//GEN-LAST:event_tblDetailMouseClicked
+
+    private void tfIdDetailBrgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdDetailBrgKeyPressed
+       btnHapusDetail.setEnabled(true);
+       btnSimpanDetail.setEnabled(true);
+    }//GEN-LAST:event_tfIdDetailBrgKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -258,12 +306,23 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblDetail;
     private javax.swing.JTextField tfCariDetail;
     private javax.swing.JTextField tfIdDetailBrg;
     private javax.swing.JTextField tfIdGadaiDet;
     private javax.swing.JTextArea tfKeterangan;
     // End of variables declaration//GEN-END:variables
+         public void reset(){
+        tfIdDetailBrg.setText("");
+        tfIdGadaiDet.setText("");
+        cmbBarangDet.setSelectedIndex(0);
+        tfKeterangan.setText("");
+        btnHapusDetail.setEnabled(false);
+        btnSimpanDetail.setEnabled(false); 
+        tfIdDetailBrg.setEnabled(true);
+    }
+
+
 }

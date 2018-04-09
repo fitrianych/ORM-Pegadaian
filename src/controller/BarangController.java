@@ -44,24 +44,18 @@ public class BarangController {
     }
      
      private void bindingTable(JTable table, String[] header, List<Object> datas) {
-        DefaultTableModel model = new DefaultTableModel(header, 0);
-        int i = 1;
+        DefaultTableModel m = new DefaultTableModel(header, 0);
+        Barang gad;
         for (Object data : datas) {
-            Barang barang = (Barang) data;
-            String jns = "";
-            if (barang.getIdBarang()!= null) {
-                jns = barang.getIdJenis().getNamaJenis()+ " ";
-            }
+            gad = (Barang) data;
             Object[] data1 = {
-                i++,
-                barang.getIdBarang(),
-                barang.getNamaBarang(),
-                jns,
-                barang.getIdJenis().getNamaJenis()
+                gad.getIdBarang(),
+                gad.getNamaBarang(),
+                gad.getIdJenis().getNamaJenis(),
             };
-            model.addRow(data1);
+            m.addRow(data1);
         }
-        table.setModel(model);
+        table.setModel(m);
     }
      
        public void loadJenis(JComboBox jComboBox) {

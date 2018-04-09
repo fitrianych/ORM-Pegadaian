@@ -44,7 +44,7 @@ public class Jenis_BarangDAO implements InterfaceDAO{
 
     @Override
     public List<Object> getAll() {
-         return fdao.getAll("FROM JenisBarang");
+         return fdao.getAll("FROM JenisBarang order by idJenis asc");
     }
 
     @Override

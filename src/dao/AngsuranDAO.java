@@ -45,7 +45,7 @@ public class AngsuranDAO implements InterfaceDAO{
 
     @Override
     public List<Object> getAll() {
-       return fdao.getAll("FROM Angsuran");
+       return fdao.getAll("FROM Angsuran order by idAngsuran asc");
     }
 
     @Override

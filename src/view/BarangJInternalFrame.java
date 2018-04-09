@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author Fitriany Chairunnisa
  */
 public class BarangJInternalFrame extends javax.swing.JInternalFrame {
-    private String[] header={"NO.",
+    private String[] header={
             "ID Barang","Nama Barang","Jenis"};
     private String[] headerTable={"id_barang",
             "nama_barang","id_jenis"};
@@ -252,9 +252,9 @@ public class BarangJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSimpanJenisActionPerformed
 
     private void tblBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBarangMouseClicked
-        tfIdBarang.setText(tblBarang.getValueAt(tblBarang.getSelectedRow(), 1) + "");
-        tfNamaBarang.setText(tblBarang.getValueAt(tblBarang.getSelectedRow(), 2) + "");
-        cmbJenisBarang.setSelectedItem(tblBarang.getValueAt(tblBarang.getSelectedRow(),3) + "") ;
+        tfIdBarang.setText(tblBarang.getValueAt(tblBarang.getSelectedRow(), 0) + "");
+        tfNamaBarang.setText(tblBarang.getValueAt(tblBarang.getSelectedRow(), 1) + "");
+        cmbJenisBarang.setSelectedItem(tblBarang.getValueAt(tblBarang.getSelectedRow(),2) + "") ;
         
         //cmbCountry.getSelectedItem(tblLocation.getValueAt(tblLocation.getSelectedRow(), 6)+ "") ;
         
