@@ -9,6 +9,7 @@ import dao.BarangDAO;
 import dao.Jenis_BarangDAO;
 import entities.Barang;
 import entities.JenisBarang;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -37,33 +38,77 @@ public class BarangController {
         return bDAO.update(barang);
     }
     
-     public void bindingAll(JTable table,
+//     public void bindingAll(JTable table,
+//            String[] header) {
+//        bindingTable(table, header,
+//                bDAO.getAll());
+//    }
+     
+      public List<String> bindingAll(JTable table,
             String[] header) {
-        bindingTable(table, header,
+        return bindingTable(table, header,
                 bDAO.getAll());
     }
      
-     private void bindingTable(JTable table, String[] header, List<Object> datas) {
-        DefaultTableModel m = new DefaultTableModel(header, 0);
-        Barang gad;
+//     private void bindingTable(JTable table, String[] header, List<Object> datas) {
+//        DefaultTableModel m = new DefaultTableModel(header, 0);
+//        Barang gad;
+//        for (Object data : datas) {
+//            gad = (Barang) data;
+//            Object[] data1 = {
+//                gad.getIdBarang(),
+//                gad.getNamaBarang(),
+//                gad.getIdJenis().getNamaJenis(),
+//            };
+//            m.addRow(data1);
+//        }
+//        table.setModel(m);
+//    }
+     
+         private List<String> bindingTable(JTable table, String[] header, List<Object> datas) {
+        List<String> dataJenis = new ArrayList<>();
+        DefaultTableModel model = new DefaultTableModel(header, 0);
+        //int i = 1;
         for (Object data : datas) {
-            gad = (Barang) data;
+            Barang brg = (Barang) data;        
+           
+                dataJenis.add(" - ;" + brg.getIdJenis().getIdJenis()
+                        + " - " + brg.getIdJenis().getNamaJenis());
+            
             Object[] data1 = {
-                gad.getIdBarang(),
-                gad.getNamaBarang(),
-                gad.getIdJenis().getNamaJenis(),
+                //i++,
+                brg.getIdBarang(),
+                brg.getNamaBarang(),
+                brg.getIdJenis().getNamaJenis()
             };
-            m.addRow(data1);
+            model.addRow(data1);
         }
-        table.setModel(m);
+        table.setModel(model);
+        return dataJenis;
     }
      
-       public void loadJenis(JComboBox jComboBox) {
+//       public void loadJenis(JComboBox jComboBox) {
+//           //jComboBox.addItem(" - ");
+//        jDAO.getAll().stream().map((object) -> (JenisBarang) object).forEachOrdered((jenis) -> {
+//            jComboBox.addItem(jenis.getIdJenis()+" - "
+//                    +jenis.getNamaJenis()+" " );
+//        });
+//    }
+         
+        public List<String> loadJenis(JComboBox jComboBox) {
+           //jComboBox.addItem(" - ");
+           
+            List<String> datas = new ArrayList<>();
+           jComboBox.addItem(" - ");
         jDAO.getAll().stream().map((object) -> (JenisBarang) object).forEachOrdered((jenis) -> {
-            jComboBox.addItem(jenis.getIdJenis()+" - "
-                    +jenis.getNamaJenis()+" " );
+           
+       String isi = jenis.getIdJenis()+ " - " + jenis.getNamaJenis(); 
+       jComboBox.addItem(isi);
+       datas.add(isi);
         });
+        return datas;
     }
+    
        
        public void bindingSearch(JTable table, String[]header, String category, String search){
         bindingTable(table, header, bDAO.search(category, search));

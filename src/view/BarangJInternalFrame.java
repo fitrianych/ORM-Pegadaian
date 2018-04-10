@@ -7,25 +7,32 @@ package view;
 
 
 import controller.BarangController;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Fitriany Chairunnisa
  */
-public class BarangJInternalFrame extends javax.swing.JInternalFrame {
-    private String[] header={
+public final class BarangJInternalFrame extends javax.swing.JInternalFrame {
+    private final String[] header={
             "ID Barang","Nama Barang","Jenis"};
-    private String[] headerTable={"id_barang",
+    private final String[] headerTable={"id_barang",
             "nama_barang","id_jenis"};
-    public BarangController bc;
+    public final BarangController bc;
+    
+    private List<String> datas;
     /**
      * Creates new form BarangJInternalFrame
      */
     public BarangJInternalFrame() {
         initComponents();
+        datas = new ArrayList<>();
         bc = new BarangController();
-        bc.bindingAll(tblBarang, header);
+        datas = bc.bindingAll(tblBarang, header);
+        //bc.bindingAll(tblBarang, header);
         bc.loadJenis(cmbJenis);
         bc.loadJenis(cmbJenisBarang);
         
@@ -124,7 +131,11 @@ public class BarangJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        cmbJenisBarang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- - Pilih - -" }));
+        cmbJenisBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbJenisBarangActionPerformed(evt);
+            }
+        });
 
         btnSimpanJenis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pegadaian/Button-Ok-icon.png"))); // NOI18N
         btnSimpanJenis.addActionListener(new java.awt.event.ActionListener() {
@@ -157,17 +168,11 @@ public class BarangJInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4))
                         .addGap(45, 45, 45)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfIdBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(cmbJenisBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 235, Short.MAX_VALUE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(tfIdBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbJenisBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1))
+                .addContainerGap(235, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSimpanJenis, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,9 +255,8 @@ public class BarangJInternalFrame extends javax.swing.JInternalFrame {
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         String jns = cmbJenis.getSelectedItem().toString();
         String a[] = jns.split(" - ");
-        System.out.println(a[0]+", "+a[1]);
-        
-         bc.bindingSearch(tblBarang, header, "idJenis",a[0]);
+        System.out.println(a[0]+", "+a[1]);        
+          bc.bindingSearch(tblBarang, header, "idJenis",a[0]);
         
     }//GEN-LAST:event_btnCariActionPerformed
 
@@ -271,10 +275,13 @@ public class BarangJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSimpanJenisActionPerformed
 
     private void tblBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBarangMouseClicked
+          int row = tblBarang.getSelectedRow();
         tfIdBarang.setText(tblBarang.getValueAt(tblBarang.getSelectedRow(), 0) + "");
         tfNamaBarang.setText(tblBarang.getValueAt(tblBarang.getSelectedRow(), 1) + "");
-        cmbJenisBarang.setSelectedItem(tblBarang.getValueAt(tblBarang.getSelectedRow(),2) + "") ;
-        
+        //cmbJenisBarang.setSelectedItem(tblBarang.getValueAt(tblBarang.getSelectedRow(),2) + "") ;
+        //cmbJenisBarang.setSelectedItem(getCombo(true).get(row));
+        cmbJenisBarang.setSelectedItem(getCombo(true).get(row));
+        System.out.println(getCombo(true).get(row));
         //cmbCountry.getSelectedItem(tblLocation.getValueAt(tblLocation.getSelectedRow(), 6)+ "") ;
         
         tfIdBarang.setEnabled(false);
@@ -309,6 +316,10 @@ public class BarangJInternalFrame extends javax.swing.JInternalFrame {
         btnHapusJenis.setEnabled(true);
     }//GEN-LAST:event_tfIdBarangKeyPressed
 
+    private void cmbJenisBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbJenisBarangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbJenisBarangActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCari;
@@ -328,7 +339,7 @@ public class BarangJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfIdBarang;
     private javax.swing.JTextField tfNamaBarang;
     // End of variables declaration//GEN-END:variables
-    public void reset(){
+    private void reset(){
         tfIdBarang.setText("");
         tfNamaBarang.setText("");
         cmbJenis.setSelectedIndex(0);
@@ -336,6 +347,17 @@ public class BarangJInternalFrame extends javax.swing.JInternalFrame {
         btnHapusJenis.setEnabled(false);
         btnSimpanJenis.setEnabled(false); 
         tfIdBarang.setEnabled(true);
+    }
+    
+        private List<String> getCombo(boolean isJenis){
+        List<String> isi = new ArrayList<>();
+        String[] daftar = new String[datas.size()];
+        for (String data : datas) {
+            daftar = data.split(";");
+            if (isJenis) isi.add(daftar[1]);
+            else isi.add(daftar[0]);
+        }
+        return isi;
     }
 
 }

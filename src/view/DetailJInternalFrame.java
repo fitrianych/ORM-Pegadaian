@@ -6,23 +6,29 @@
 package view;
 
 import controller.Detail_GadaiController;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Fitriany Chairunnisa
  */
-public class DetailJInternalFrame extends javax.swing.JInternalFrame {
-     private String header[] = {"ID Detail Barang","ID Gadai", "Barang",
+public final class DetailJInternalFrame extends javax.swing.JInternalFrame {
+     private final String header[] = {"ID Detail Barang","ID Gadai", "Barang",
         "Keterangan"};
-     public Detail_GadaiController det;
+     public final Detail_GadaiController det;
+     
+     private List<String> datas;
     /**
      * Creates new form DetailJInternalFrame
      */
     public DetailJInternalFrame() {
         initComponents();
+        datas = new ArrayList<>();
         det = new Detail_GadaiController();
-        det.bindingAll(tblDetail, header);
+        datas = det.bindingAll(tblDetail, header);
+        //det.bindingAll(tblDetail, header);
         det.loadBarang(cmbBarangDet);
         //gadai.loadBrg(cmbBrg);
         
@@ -288,12 +294,14 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCariDetActionPerformed
 
     private void tblDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDetailMouseClicked
+        int row = tblDetail.getSelectedRow();
         tfIdDetailBrg.setText(tblDetail.getValueAt(tblDetail.getSelectedRow(), 0) + "");
         tfIdGadaiDet.setText(tblDetail.getValueAt(tblDetail.getSelectedRow(), 1) + "");
         cmbBarangDet.setSelectedItem(tblDetail.getValueAt(tblDetail.getSelectedRow(),2) + "") ;
         tfKeterangan.setText(tblDetail.getValueAt(tblDetail.getSelectedRow(), 3) + "");
-        //cmbCountry.getSelectedItem(tblLocation.getValueAt(tblLocation.getSelectedRow(), 6)+ "") ;
-        tfIdGadaiDet.setEnabled(false);
+        cmbBarangDet.setSelectedItem(getCombo(true).get(row));
+        System.out.println(getCombo(true).get(row));
+       // tfIdGadaiDet.setEnabled(false);
         tfIdDetailBrg.setEnabled(false);
         btnHapusDetail.setEnabled(true);
         btnSimpanDetail.setEnabled(true);
@@ -325,7 +333,7 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfIdGadaiDet;
     private javax.swing.JTextArea tfKeterangan;
     // End of variables declaration//GEN-END:variables
-         public void reset(){
+         private void reset(){
         tfIdDetailBrg.setText("");
         tfIdGadaiDet.setText("");
         cmbBarangDet.setSelectedIndex(0);
@@ -334,6 +342,16 @@ public class DetailJInternalFrame extends javax.swing.JInternalFrame {
         btnSimpanDetail.setEnabled(false); 
         tfIdDetailBrg.setEnabled(true);
     }
-
+         
+              private List<String> getCombo(boolean isBarang){
+        List<String> isi = new ArrayList<>();
+        String[] daftar = new String[datas.size()];
+        for (String data : datas) {
+            daftar = data.split(";");
+            if (isBarang) isi.add(daftar[1]);
+            else isi.add(daftar[0]);
+        }
+        return isi;
+    }
 
 }

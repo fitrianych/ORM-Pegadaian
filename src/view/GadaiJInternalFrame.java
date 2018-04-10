@@ -7,27 +7,33 @@ package view;
 
 
 import controller.GadaiController;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Fitriany Chairunnisa
  */
-public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
-    private String header[] = {"ID Gadai", "No. Identitas",
+public final class GadaiJInternalFrame extends javax.swing.JInternalFrame {
+    private final String header[] = {"ID Gadai", "No. Identitas",
         "Tanggal Pengajuan", "Jatuh Tempo", "Jumlah Pinjaman", "Status"};
 //    private String[] headerTable={"id_gadai","no_identitas",
 //            "tanggal_pengajuan","jatuh_tempo","jumlah_pinjaman","id_barang", "id_status"};
     
-    public GadaiController gadai;
+    public final GadaiController gadai;
+    
+    private List<String> datas;
     /**
      * Creates new form GadaiJInternalFrame
      */
     public GadaiJInternalFrame() {
         initComponents();
+        datas = new ArrayList<>();
         gadai = new GadaiController();
-        gadai.bindingAll(tblGadai, header);
+        datas = gadai.bindingAll(tblGadai, header);
+        //gadai.bindingAll(tblGadai, header);
         gadai.loadStatus(cmbStatus);
 
         reset();
@@ -306,11 +312,15 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblGadaiKeyPressed
 
     private void tblGadaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGadaiMouseClicked
+        int row = tblGadai.getSelectedRow();
         tfIdGadai.setText("" + tblGadai.getValueAt(tblGadai.getSelectedRow(), 0) + "");
         tfNoId.setText("" + tblGadai.getValueAt(tblGadai.getSelectedRow(), 1) + "");
         tfTanggalPengajuan.setDate((Date) tblGadai.getValueAt(tblGadai.getSelectedRow(), 2));
         tfJatuhTempo.setDate((Date) tblGadai.getValueAt(tblGadai.getSelectedRow(), 3));
         tfJmlPinjaman.setText("" + tblGadai.getValueAt(tblGadai.getSelectedRow(), 4) + "");
+        
+        cmbStatus.setSelectedItem(getCombo(true).get(row));
+        System.out.println(getCombo(true).get(row));
         //tfSisa.setText("" + tblGadai.getValueAt(tblGadai.getSelectedRow(), 5) + "");
         tfIdGadai.setEnabled(false);
         tfNoId.setEnabled(false);
@@ -371,7 +381,7 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfNoIdent;
     private com.toedter.calendar.JDateChooser tfTanggalPengajuan;
     // End of variables declaration//GEN-END:variables
-        public void reset(){
+        private void reset(){
         tfIdGadai.setText("");
         tfNoId.setText("");
         tfJmlPinjaman.setText("");
@@ -384,5 +394,14 @@ public class GadaiJInternalFrame extends javax.swing.JInternalFrame {
         tfIdGadai.setEnabled(true);
     }
 
-
+            private List<String> getCombo(boolean isJenis){
+        List<String> isi = new ArrayList<>();
+        String[] daftar = new String[datas.size()];
+        for (String data : datas) {
+            daftar = data.split(";");
+            if (isJenis) isi.add(daftar[1]);
+            else isi.add(daftar[0]);
+        }
+        return isi;
+    }
 }

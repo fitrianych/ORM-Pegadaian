@@ -10,6 +10,7 @@ import dao.Detail_GadaiDAO;
 import entities.Barang;
 import entities.DetailGadai;
 import entities.Gadai;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -28,26 +29,54 @@ public class Detail_GadaiController {
         this.bDAO = new BarangDAO();
     }
       
-       public void bindingAll(JTable table,
+//       public void bindingAll(JTable table,
+//            String[] header) {
+//        bindingTable(table, header,
+//                dDAO.getAll());
+//    }
+      
+       public List<String> bindingAll(JTable table,
             String[] header) {
-        bindingTable(table, header,
-                dDAO.getAll());
+        return bindingTable(table, header, dDAO.getAll());
     }
 
-    private void bindingTable(JTable table, String[] header, List<Object> datas) {
+//    private void bindingTable(JTable table, String[] header, List<Object> datas) {
+//        DefaultTableModel model = new DefaultTableModel(header, 0);
+//        DetailGadai cus;
+//        for (Object data : datas) {
+//            cus = (DetailGadai) data;
+//            Object[] data1 = {
+//                cus.getIdDetailGadai(),
+//                cus.getIdGadai(),
+//                cus.getIdBarang().getNamaBarang(),
+//                cus.getKeterangan(),
+//            };
+//            model.addRow(data1);
+//        }
+//        table.setModel(model);
+//    }
+       
+             private List<String> bindingTable(JTable table, String[] header, List<Object> datas) {
+        List<String> dataBarang = new ArrayList<>();
         DefaultTableModel model = new DefaultTableModel(header, 0);
-        DetailGadai cus;
+        //int i = 1;
         for (Object data : datas) {
-            cus = (DetailGadai) data;
+            DetailGadai brg = (DetailGadai) data;        
+           
+                dataBarang.add(" - ;" + brg.getIdBarang().getIdBarang()
+                        + " - " + brg.getIdBarang().getNamaBarang());
+            
             Object[] data1 = {
-                cus.getIdDetailGadai(),
-                cus.getIdGadai(),
-                cus.getIdBarang().getNamaBarang(),
-                cus.getKeterangan(),
+                //i++,
+                 brg.getIdDetailGadai(),
+                brg.getIdGadai(),
+                brg.getIdBarang().getNamaBarang(),
+                brg.getKeterangan(),
             };
             model.addRow(data1);
         }
         table.setModel(model);
+        return dataBarang;
     }
     
     public void bindingSearch(JTable table, String[]header, String category, String search){
@@ -66,12 +95,27 @@ public class Detail_GadaiController {
         return bDAO.update(dg);
     }
       
-        public void loadBarang(JComboBox jComboBox) {
+//        public void loadBarang(JComboBox jComboBox) {
+//        bDAO.getAll().stream().map((object) -> (Barang) object).forEachOrdered((barang) -> {
+//            jComboBox.addItem(barang.getIdBarang()+" - "
+//                    +barang.getNamaBarang()+" " );
+//        });
+//    }
+      
+           public List<String> loadBarang(JComboBox jComboBox) {
+           //jComboBox.addItem(" - ");
+           
+            List<String> datas = new ArrayList<>();
+           jComboBox.addItem(" - ");
         bDAO.getAll().stream().map((object) -> (Barang) object).forEachOrdered((barang) -> {
-            jComboBox.addItem(barang.getIdBarang()+" - "
-                    +barang.getNamaBarang()+" " );
+           
+       String isi = barang.getIdBarang()+ " - " + barang.getNamaBarang(); 
+       jComboBox.addItem(isi);
+       datas.add(isi);
         });
+        return datas;
     }
+      
         public boolean delete(String id) {
         return dDAO.delete(id);
     }

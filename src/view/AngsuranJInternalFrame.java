@@ -60,7 +60,6 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
         btnHapusAngsuran = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jDateAngsuran = new com.toedter.calendar.JDateChooser();
-        tfTotal = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -158,9 +157,7 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
                                 .addComponent(jDateAngsuran, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                                 .addComponent(tfIdGadaii, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfDenda, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tfDenda, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                                 .addComponent(btnSimpanAngsuran, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)
@@ -205,9 +202,7 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfDenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9))))
+                        .addGap(35, 35, 35))))
         );
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pegadaian/pegadaian-header3.png"))); // NOI18N
@@ -358,7 +353,6 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfIdGadaii;
     private javax.swing.JTextField tfJmlAngsuran;
     private javax.swing.JTextField tfNoIdentitasAng;
-    private javax.swing.JTextField tfTotal;
     // End of variables declaration//GEN-END:variables
     public void reset(){
         tfIdAngsuran.setText("");

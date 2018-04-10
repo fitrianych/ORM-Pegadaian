@@ -13,6 +13,7 @@ import entities.Customer;
 import entities.Gadai;
 import entities.Status;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -35,9 +36,15 @@ public class GadaiController {
 
     
     
-   public void bindingAll(JTable table,
+//   public void bindingAll(JTable table,
+//            String[] header) {
+//        bindingTable(table, header,
+//                gDAO.getAll());
+//    }
+    
+     public List<String> bindingAll(JTable table,
             String[] header) {
-        bindingTable(table, header,
+        return bindingTable(table, header,
                 gDAO.getAll());
     }
 
@@ -45,28 +52,50 @@ public class GadaiController {
         bindingTable(table, header, gDAO.search(category, search));
     }
 
-    private void bindingTable(JTable table, String[] header, List<Object> search) {
-        DefaultTableModel m = new DefaultTableModel(header, 0);
-        Gadai gad;
-        for (Object data : search) {
-            gad = (Gadai) data;
+//    private void bindingTable(JTable table, String[] header, List<Object> search) {
+//        DefaultTableModel m = new DefaultTableModel(header, 0);
+//        Gadai gad;
+//        for (Object data : search) {
+//            gad = (Gadai) data;
+//            Object[] data1 = {
+//                gad.getIdGadai(),
+//                gad.getNoIdentitas(),
+//                gad.getTanggalPengajuan(),
+//                gad.getJatuhTempo(),
+//                gad.getJumlahPinjaman(),
+//            //    gad.getSisa(),
+//                gad.getIdStatus().getStatus()
+//            };
+//            m.addRow(data1);
+//        }
+//        table.setModel(m);
+//    }
+    
+         private List<String> bindingTable(JTable table, String[] header, List<Object> datas) {
+        List<String> dataStatus = new ArrayList<>();
+        DefaultTableModel model = new DefaultTableModel(header, 0);
+        //int i = 1;
+        for (Object data : datas) {
+            Gadai gad = (Gadai) data;        
+           
+                dataStatus.add(" - ;" + gad.getIdStatus().getIdStatus()
+                        + " - " + gad.getIdStatus().getStatus());
+            
             Object[] data1 = {
+                //i++,
                 gad.getIdGadai(),
                 gad.getNoIdentitas(),
                 gad.getTanggalPengajuan(),
                 gad.getJatuhTempo(),
                 gad.getJumlahPinjaman(),
-            //    gad.getSisa(),
                 gad.getIdStatus().getStatus()
             };
-            m.addRow(data1);
+            model.addRow(data1);
         }
-        table.setModel(m);
+        table.setModel(model);
+        return dataStatus;
     }
 
-//    public void bindingSearch(JTable tblGadai, String[] header, String text) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     
       public boolean save(String idGadai,  String tanggalPengajuan, 
               String jatuhTempo,String jumlahPinjaman,String noIdentitas,String idStatus, boolean isSave){
@@ -124,19 +153,26 @@ public class GadaiController {
     }
     
       
-      public void loadStatus(JComboBox jComboBox) {
-        sDAO.getAll().stream().map((object) -> (Status) object).forEachOrdered((status) -> {
-            jComboBox.addItem(status.getIdStatus()+" - "
-                    +status.getStatus());
-        });
-    }
-      
-//       public void loadBrg(JComboBox jComboBox) {
-//        bDAO.getAll().stream().map((object) -> (Barang) object).forEachOrdered((barang) -> {
-//            jComboBox.addItem(barang.getIdBarang()+" - "
-//                    +barang.getNamaBarang());
+//      public void loadStatus(JComboBox jComboBox) {
+//        sDAO.getAll().stream().map((object) -> (Status) object).forEachOrdered((status) -> {
+//            jComboBox.addItem(status.getIdStatus()+" - "
+//                    +status.getStatus());
 //        });
 //    }
+      
+           public List<String> loadStatus(JComboBox jComboBox) {
+           //jComboBox.addItem(" - ");
+           
+            List<String> datas = new ArrayList<>();
+           jComboBox.addItem(" - ");
+        sDAO.getAll().stream().map((object) -> (Status) object).forEachOrdered((status) -> {
+           
+       String isi = status.getIdStatus()+ " - " + status.getStatus(); 
+       jComboBox.addItem(isi);
+       datas.add(isi);
+        });
+        return datas;
+    }
       
       public boolean delete(String id) {
         return gDAO.delete(id);

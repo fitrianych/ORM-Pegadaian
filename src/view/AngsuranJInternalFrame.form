@@ -170,10 +170,7 @@
                                   <Component id="tfIdGadaii" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tfDenda" min="-2" pref="246" max="-2" attributes="0"/>
-                                      <Component id="tfTotal" min="-2" pref="186" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="tfDenda" min="-2" pref="246" max="-2" attributes="0"/>
                                   <EmptySpace pref="82" max="32767" attributes="0"/>
                                   <Component id="btnSimpanAngsuran" min="-2" pref="35" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -233,9 +230,7 @@
                               <Component id="tfDenda" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfTotal" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -315,8 +310,6 @@
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jDateAngsuran">
-        </Component>
-        <Component class="javax.swing.JTextField" name="tfTotal">
         </Component>
       </SubComponents>
     </Container>
