@@ -6,6 +6,7 @@
 package controller;
 
 import dao.AngsuranDAO;
+import dao.GadaiDAO;
 import entities.Angsuran;
 import entities.Customer;
 import entities.Gadai;
@@ -64,13 +65,18 @@ public class AngsuranController {
        an.setTanggalAngsuran(new java.sql.Date(new Long(tanggalAngsuran)));
        an.setJumlahAngsuran(Integer.parseInt(jumlahAngsuran));
        an.setDenda(Integer.parseInt(denda));
-      
-        if (isSave)return aDAO.insert(an);
+     
+        if (isSave){ return aDAO.insert(an);
+//            return new GadaiController().cek(idGadai);
+        }
+                
         return aDAO.update(an);
+        
     }
     
      public boolean delete(String id) {
         return aDAO.delete(id);
     }
    
+     
 }

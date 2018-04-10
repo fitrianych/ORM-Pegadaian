@@ -6,6 +6,7 @@
 package view;
 
 import controller.AngsuranController;
+import controller.GadaiController;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -294,8 +295,8 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
         hasil = ang.save (tfIdAngsuran.getText(),tfNoIdentitasAng.getText(),tfIdGadaii.getText(),
                 jDateAngsuran.getDate().getTime()+ "",
                tfJmlAngsuran.getText(),tfDenda.getText(),
-               tfIdAngsuran.isEnabled());
-        String pesan = "Gagal menambahkan data";
+               tfIdAngsuran.isEnabled());  
+        String pesan = "Gagal menambahkan Data";
         if (hasil) {
             try {
                 pesan = "Berhasil menambahkan Data";
@@ -305,6 +306,11 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
 
         }
         JOptionPane.showMessageDialog(this, pesan);
+        boolean cek = new GadaiController().cek(tfIdGadaii.getText());
+        if (cek) {
+            new GadaiController().update(tfIdGadaii.getText(), "a");
+            
+        }
         ang.bindingAll(tblAngsuran, header);
         reset();
     }//GEN-LAST:event_btnSimpanAngsuranActionPerformed
