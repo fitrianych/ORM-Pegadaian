@@ -3,6 +3,9 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="no" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      CUSTOMER."NO_IDENTITAS" AS CUSTOMER_NO_IDENTITAS,
@@ -12,7 +15,8 @@
      CUSTOMER."PEKERJAAN" AS CUSTOMER_PEKERJAAN,
      CUSTOMER."ALAMAT" AS CUSTOMER_ALAMAT
 FROM
-     "HR"."CUSTOMER" CUSTOMER]]>
+     "HR"."CUSTOMER" CUSTOMER
+]]>
 	</queryString>
 	<field name="CUSTOMER_NO_IDENTITAS" class="java.math.BigDecimal"/>
 	<field name="CUSTOMER_NAMA" class="java.lang.String"/>
@@ -68,10 +72,6 @@ FROM
 				<reportElement x="455" y="10" width="100" height="20" uuid="39c674fb-4250-4a2b-b51a-ea5b6722a099"/>
 				<text><![CDATA[Alamat]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="103" y="427" width="100" height="20" uuid="9cca4062-eb5b-4f89-b83a-2df26998b7cc"/>
-				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
-			</textField>
 		</band>
 	</columnHeader>
 	<detail>
