@@ -41,12 +41,13 @@ public class FilterJInternalFrame extends javax.swing.JInternalFrame {
         tfFilter = new javax.swing.JTextField();
         btnFilter = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Filter Report by No. Identitas");
+        setTitle("Report by ID Gadai");
 
         btnFilter.setText("Cetak");
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +55,8 @@ public class FilterJInternalFrame extends javax.swing.JInternalFrame {
                 btnFilterActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("ID Gadai");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,10 +67,12 @@ public class FilterJInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
                         .addComponent(tfFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnFilter)
-                        .addGap(0, 352, Short.MAX_VALUE)))
+                        .addGap(0, 293, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -75,10 +80,11 @@ public class FilterJInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -97,7 +103,7 @@ public class FilterJInternalFrame extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(konek,user,password);
             File reportFile=new File(path);
             InputStream jReport = this.getClass().getClassLoader().getResourceAsStream(reportFile.getPath());
-            parameter.put("noIdentitas", Integer.parseInt(tfFilter.getText()));
+            parameter.put("idGadai", Integer.parseInt(tfFilter.getText()));
             //                JasperReport jReport = (JasperReport) JRLoader.loadObject(reportFile.getPath());
             JasperPrint jPrint = JasperFillManager.fillReport(jReport, parameter, conn);
             //                JasperViewer.viewReport(jPrint, true);
@@ -116,6 +122,7 @@ public class FilterJInternalFrame extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFilter;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tfFilter;
     // End of variables declaration//GEN-END:variables

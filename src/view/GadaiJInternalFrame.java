@@ -292,6 +292,14 @@ public final class GadaiJInternalFrame extends javax.swing.JInternalFrame {
                ,tfIdGadai.isEnabled()
         );
         String pesan = "Gagal menambahkan data";
+        if (tfIdGadai.isEnabled()) {
+            DetailJInternalFrame dj = new DetailJInternalFrame();
+            GadaiJInternalFrame gd = new GadaiJInternalFrame();
+            this.getParent().add(dj);
+            dj.setVisible(true);
+            gd.setVisible(false);
+            
+        }
         if (hasil) {
             try {
                 pesan = "Berhasil menambahkan Data";
