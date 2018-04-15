@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Angsuran.findByIdAngsuran", query = "SELECT a FROM Angsuran a WHERE a.idAngsuran = :idAngsuran")
     , @NamedQuery(name = "Angsuran.findByTanggalAngsuran", query = "SELECT a FROM Angsuran a WHERE a.tanggalAngsuran = :tanggalAngsuran")
     , @NamedQuery(name = "Angsuran.findByJumlahAngsuran", query = "SELECT a FROM Angsuran a WHERE a.jumlahAngsuran = :jumlahAngsuran")
-    , @NamedQuery(name = "Angsuran.findByDenda", query = "SELECT a FROM Angsuran a WHERE a.denda = :denda")})
+    , @NamedQuery(name = "Angsuran.findByDenda", query = "SELECT a FROM Angsuran a WHERE a.denda = :denda")
+    , @NamedQuery(name = "Angsuran.findByTotal", query = "SELECT a FROM Angsuran a WHERE a.total = :total")})
 public class Angsuran implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,7 +48,9 @@ public class Angsuran implements Serializable {
     @Column(name = "JUMLAH_ANGSURAN")
     private Integer jumlahAngsuran;
     @Column(name = "DENDA")
-    private Integer denda;
+    private String denda;
+    @Column(name = "TOTAL")
+    private String total;
     @JoinColumn(name = "NO_IDENTITAS", referencedColumnName = "NO_IDENTITAS")
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer noIdentitas;
@@ -86,12 +89,20 @@ public class Angsuran implements Serializable {
         this.jumlahAngsuran = jumlahAngsuran;
     }
 
-    public Integer getDenda() {
+    public String getDenda() {
         return denda;
     }
 
-    public void setDenda(Integer denda) {
+    public void setDenda(String denda) {
         this.denda = denda;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public Customer getNoIdentitas() {
@@ -132,7 +143,7 @@ public class Angsuran implements Serializable {
 
     @Override
     public String toString() {
-        return "" + idAngsuran + "";
+        return "entities.Angsuran[ idAngsuran=" + idAngsuran + " ]";
     }
     
 }

@@ -183,19 +183,19 @@ public class GadaiController {
 //                    +status.getStatus());
 //        });
 //    }
-    public List<String> loadStatus(JComboBox jComboBox) {
-        //jComboBox.addItem(" - ");
-
-        List<String> datas = new ArrayList<>();
-        jComboBox.addItem(" - ");
-        sDAO.getAll().stream().map((object) -> (Status) object).forEachOrdered((status) -> {
-
-            String isi = status.getIdStatus() + " - " + status.getStatus();
-            jComboBox.addItem(isi);
-            datas.add(isi);
-        });
-        return datas;
-    }
+//    public List<String> loadStatus(JComboBox jComboBox) {
+//        //jComboBox.addItem(" - ");
+//
+//        List<String> datas = new ArrayList<>();
+//        jComboBox.addItem(" - ");
+//        sDAO.getAll().stream().map((object) -> (Status) object).forEachOrdered((status) -> {
+//
+//            String isi = status.getIdStatus() + " - " + status.getStatus();
+//            jComboBox.addItem(isi);
+//            datas.add(isi);
+//        });
+//        return datas;
+//    }
 
     public boolean delete(String id) {
         return gDAO.delete(id);

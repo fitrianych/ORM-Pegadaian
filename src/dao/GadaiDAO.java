@@ -57,6 +57,12 @@ public class GadaiDAO implements InterfaceDAO{
     public Object getById(String id) {
         return fdao.getById("from Gadai where idGadai='" + id + "'");
     }
+    
+//    public Object cek(String cek)
+//    {
+//        return fdao.cek("from Gadai JOIN Angsuran on Gadai.noIdentitas = Angsuran.noIdentitas "
+//                + "where round(Angsuran.tanggal_angsuran - Gadai.jatuh_tempo) > 0");
+//    }
 
     
 }

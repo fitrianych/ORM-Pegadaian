@@ -41,9 +41,13 @@ public class AngsuranController {
                 ang.getNoIdentitas(),
                 ang.getNoIdentitas().getNama(),
                 ang.getIdGadai(),
+                ang.getIdGadai().getTanggalPengajuan(),
+                ang.getIdGadai().getJatuhTempo(),
                 ang.getTanggalAngsuran(),
                 ang.getJumlahAngsuran(),
-                ang.getDenda()
+                ang.getIdGadai().getJumlahPinjaman(),
+                ang.getDenda(),
+                ang.getTotal()
                 
             };
             m.addRow(data1);
@@ -55,8 +59,7 @@ public class AngsuranController {
         bindingTable(table, header, aDAO.search(category, search));
     }
     
-    public boolean save(String idAngsuran,  String noIdentitas, 
-              String idGadai,String tanggalAngsuran,String jumlahAngsuran, String denda,boolean isSave){
+    public boolean save(String idAngsuran,String noIdentitas,String idGadai,String tanggalAngsuran,String jumlahAngsuran,String denda,String total, boolean isSave){
           
        Angsuran an = new Angsuran();
        an.setIdAngsuran(idAngsuran);
@@ -64,7 +67,9 @@ public class AngsuranController {
        an.setIdGadai(new Gadai(Integer.parseInt(idGadai)));
        an.setTanggalAngsuran(new java.sql.Date(new Long(tanggalAngsuran)));
        an.setJumlahAngsuran(Integer.parseInt(jumlahAngsuran));
-       an.setDenda(Integer.parseInt(denda));
+       an.setDenda(denda);
+       an.setTotal(total);
+       //an.setDenda(0);
      
         if (isSave){ return aDAO.insert(an);
 //            return new GadaiController().cek(idGadai);
@@ -77,6 +82,13 @@ public class AngsuranController {
      public boolean delete(String id) {
         return aDAO.delete(id);
     }
+//       public boolean update(String id_gadai, Integer denda) {
+//
+//        Angsuran angg = (Angsuran) aDAO.getById(id_gadai);
+//        angg.setDenda(denda);
+//
+//        return aDAO.insert(angg);
+//    }
    
      
 }

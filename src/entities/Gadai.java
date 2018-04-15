@@ -7,6 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,10 +17,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,6 +39,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Gadai.findByJumlahPinjaman", query = "SELECT g FROM Gadai g WHERE g.jumlahPinjaman = :jumlahPinjaman")})
 public class Gadai implements Serializable {
 
+    @Column(name = "JUMLAH_PINJAMAN")
+    private Integer jumlahPinjaman;
+    @OneToMany(mappedBy = "idGadai", fetch = FetchType.LAZY)
+    private List<Angsuran> angsuranList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -47,8 +55,6 @@ public class Gadai implements Serializable {
     @Column(name = "JATUH_TEMPO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date jatuhTempo;
-    @Column(name = "JUMLAH_PINJAMAN")
-    private Integer jumlahPinjaman;
     @JoinColumn(name = "NO_IDENTITAS", referencedColumnName = "NO_IDENTITAS")
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer noIdentitas;
@@ -134,6 +140,23 @@ public class Gadai implements Serializable {
     @Override
     public String toString() {
         return "" + idGadai + " ";
+    }
+
+//    public Integer getJumlahPinjaman() {
+//        return jumlahPinjaman;
+//    }
+//
+//    public void setJumlahPinjaman(Integer jumlahPinjaman) {
+//        this.jumlahPinjaman = jumlahPinjaman;
+//    }
+
+    @XmlTransient
+    public List<Angsuran> getAngsuranList() {
+        return angsuranList;
+    }
+
+    public void setAngsuranList(List<Angsuran> angsuranList) {
+        this.angsuranList = angsuranList;
     }
     
 }
