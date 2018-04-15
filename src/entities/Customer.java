@@ -7,18 +7,14 @@ package entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -53,11 +49,6 @@ public class Customer implements Serializable {
     private String pekerjaan;
     @Column(name = "ALAMAT")
     private String alamat;
-    
-    @OneToMany(mappedBy = "noIdentitas", fetch = FetchType.LAZY)
-    private List<Gadai> gadaiList;
-    @OneToMany(mappedBy = "noIdentitas", fetch = FetchType.LAZY)
-    private List<Angsuran> angsuranList;
 
     public Customer() {
     }
@@ -66,13 +57,11 @@ public class Customer implements Serializable {
         this.noIdentitas = noIdentitas;
     }
 
-   
-
-    public Customer(Integer no_identitas, String nama, String jenis_kelamin, String no_telp, String pekerjaan, String alamat) {
-        this.noIdentitas = no_identitas;
+    public Customer(Integer noIdentitas, String nama, String jenisKelamin, String noTelp, String pekerjaan, String alamat) {
+        this.noIdentitas = noIdentitas;
         this.nama = nama;
-        this.jenisKelamin = jenis_kelamin;
-        this.noTelp = no_telp;
+        this.jenisKelamin = jenisKelamin;
+        this.noTelp = noTelp;
         this.pekerjaan = pekerjaan;
         this.alamat = alamat;
     }
@@ -125,24 +114,6 @@ public class Customer implements Serializable {
         this.alamat = alamat;
     }
 
-    @XmlTransient
-    public List<Gadai> getGadaiList() {
-        return gadaiList;
-    }
-
-    public void setGadaiList(List<Gadai> gadaiList) {
-        this.gadaiList = gadaiList;
-    }
-
-    @XmlTransient
-    public List<Angsuran> getAngsuranList() {
-        return angsuranList;
-    }
-
-    public void setAngsuranList(List<Angsuran> angsuranList) {
-        this.angsuranList = angsuranList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -165,7 +136,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "" + noIdentitas + "";
+        return "" + noIdentitas + " ";
     }
     
 }

@@ -7,6 +7,8 @@ package view;
 
 
 import controller.CustomerController;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,14 +20,17 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
             "No. Identitas","Nama","Jenis Kelamin","No. Telepon","Pekerjaan","Alamat"};
     private String[] headerTable={"no_identitas",
             "nama","jenis_kelamin","no_telpon","pekerjaan","alamat"};
-    public CustomerController customerController;
+    public final CustomerController customerController;
+    private List<String> datas;
     /**
      * Creates new form CustomerJInternalFrame
      */
     public CustomerJInternalFrame() {
         initComponents();
+        datas = new ArrayList<>();
         customerController = new CustomerController();
-        customerController.bindingAll(tblCustomer, header);
+        datas = customerController.bindingAll(tblCustomer, header);
+        //customerController.bindingAll(tblCustomer, header);
         reset ();
     }
 
@@ -52,13 +57,13 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         tfNoIdentitas = new javax.swing.JTextField();
         tfNama = new javax.swing.JTextField();
-        tfJenisKelamin = new javax.swing.JTextField();
         tfNoTelepon = new javax.swing.JTextField();
         tfPekerjaan = new javax.swing.JTextField();
         tfAlamat = new javax.swing.JTextField();
         btnSimpan = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        cmbJenisKelamin = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -137,6 +142,8 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Form Customer");
 
+        cmbJenisKelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih --", "Laki-Laki", "Perempuan" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -153,18 +160,18 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
                         .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfNama, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfPekerjaan, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfNoTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfNoIdentitas, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfNama, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                            .addComponent(tfAlamat, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                            .addComponent(tfPekerjaan, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                            .addComponent(tfNoTelepon, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                            .addComponent(tfNoIdentitas, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(58, 58, 58)
                                 .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(74, 74, 74)
-                                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbJenisKelamin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel1))
                 .addGap(0, 103, Short.MAX_VALUE))
         );
@@ -184,7 +191,7 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(tfJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -248,7 +255,7 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
                                 .addGap(43, 43, 43)
                                 .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -275,16 +282,25 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
          boolean hasil=false;
-        if(!tfNoIdentitas.isEnabled()){
-         hasil=customerController.update((Integer.parseInt(tfNoIdentitas.getText())),
-         tfNama.getText(),tfJenisKelamin.getText(),tfNoTelepon.getText(),tfPekerjaan.getText(),
-         tfAlamat.getText());          
-     }
-        else{
-        hasil=customerController.insert((Integer.parseInt(tfNoIdentitas.getText())),
-         tfNama.getText(),tfJenisKelamin.getText(),tfNoTelepon.getText(),tfPekerjaan.getText(),
-         tfAlamat.getText());
-        }
+//        if(!tfNoIdentitas.isEnabled()){
+//         hasil=customerController.update((Integer.parseInt(tfNoIdentitas.getText())),
+//         tfNama.getText(),tfJenisKelamin.getText(),tfNoTelepon.getText(),tfPekerjaan.getText(),
+//         tfAlamat.getText());          
+//     }
+//        else{
+//        hasil=customerController.insert((Integer.parseInt(tfNoIdentitas.getText())),
+//         tfNama.getText(),tfJenisKelamin.getText(),tfNoTelepon.getText(),tfPekerjaan.getText(),
+//         tfAlamat.getText());
+//        }
+
+         hasil = customerController.save(tfNoIdentitas.getText(), 
+                 tfNama.getText()
+                    , cmbJenisKelamin.getSelectedItem().toString(),
+                    tfNoTelepon.getText(),
+                    tfPekerjaan.getText(),
+                    tfAlamat.getText(),
+                    tfNoIdentitas.isEnabled());
+    
         tfNoIdentitas.setEnabled(true);
         btnSimpan.setEnabled(true);
         String pesan = "Gagal Menyimpan Data";
@@ -297,9 +313,11 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void tblCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomerMouseClicked
+        int row = tblCustomer.getSelectedRow();
         tfNoIdentitas.setText(tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 0)+"");
         tfNama.setText(tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 1)+"");
-        tfJenisKelamin.setText(tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 2)+"");
+        //tfJenisKelamin.setText(tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 2)+"");
+        cmbJenisKelamin.setSelectedItem(getCombo(true).get(row));
         tfNoTelepon.setText(tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 3)+"");
         tfPekerjaan.setText(tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 4)+"");
         tfAlamat.setText(tblCustomer.getValueAt(tblCustomer.getSelectedRow(), 5)+"");
@@ -333,6 +351,7 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox<String> cmbCari;
+    private javax.swing.JComboBox<String> cmbJenisKelamin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -346,23 +365,34 @@ public class CustomerJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblCustomer;
     private javax.swing.JTextField tfAlamat;
     private javax.swing.JTextField tfCustomer;
-    private javax.swing.JTextField tfJenisKelamin;
     private javax.swing.JTextField tfNama;
     private javax.swing.JTextField tfNoIdentitas;
     private javax.swing.JTextField tfNoTelepon;
     private javax.swing.JTextField tfPekerjaan;
     // End of variables declaration//GEN-END:variables
     
-    public void reset(){
+    private void reset(){
         tfNoIdentitas.setText("");
         tfNama.setText("");
-        tfJenisKelamin.setText("");
+        //tfJenisKelamin.setText("");
+        cmbJenisKelamin.setSelectedIndex(0);
         tfPekerjaan.setText("");
         tfAlamat.setText("");
         tfNoTelepon.setText("");
         btnHapus.setEnabled(false);
         btnSimpan.setEnabled(false); 
         tfNoIdentitas.setEnabled(true);
+    }
+    
+         private List<String> getCombo(boolean isJenis){
+        List<String> isi = new ArrayList<>();
+        String[] daftar = new String[datas.size()];
+        for (String data : datas) {
+           daftar = data.split(";");
+            if (isJenis) isi.add(daftar[1]);
+            else isi.add(daftar[0]);
+        }
+        return isi;
     }
 
 

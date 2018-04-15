@@ -227,20 +227,20 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addComponent(jLabel11))
-                        .addGap(33, 33, 33)
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfJatuhTempo, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                            .addComponent(tfAngsuran)))
+                            .addComponent(tfAngsuran)
+                            .addComponent(tfJatuhTempo)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel12)
                             .addComponent(jLabel13)
                             .addComponent(jLabel6))
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tfHutang, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                             .addComponent(tfDenda)
-                            .addComponent(tfHutang)
                             .addComponent(tfTotal))))
                 .addContainerGap())
         );
@@ -352,9 +352,8 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnHapusAngsuran, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCek, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHapusAngsuran, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCek, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSimpanAngsuran, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -432,10 +431,10 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
         tfJmlAngsuran.setText("" + tblAngsuran.getValueAt(tblAngsuran.getSelectedRow(), 7) + "");
         tfDenda.setText("" + tblAngsuran.getValueAt(tblAngsuran.getSelectedRow(), 9) + "");
         tfHutang.setText("" + tblAngsuran.getValueAt(tblAngsuran.getSelectedRow(), 8) + "");
-        tfJatuhTempo.setText("" + tblAngsuran.getValueAt(tblAngsuran.getSelectedRow(), 4) + "");
+        tfJatuhTempo.setText("" + tblAngsuran.getValueAt(tblAngsuran.getSelectedRow(), 5) + "");
         tfAngsuran.setText("" + tblAngsuran.getValueAt(tblAngsuran.getSelectedRow(), 6) + "");
         tfIdAngsuran.setEnabled(false);
-        tfNoIdentitasAng.setEnabled(false);
+        //tfNoIdentitasAng.setEnabled(false);
         //tfIdGadaii.setEnabled(false);
         btnHapusAngsuran.setEnabled(true);
         btnSimpanAngsuran.setEnabled(true);
@@ -455,11 +454,12 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
             String tgldua = tfAngsuran.getText();
             Date tglAngsuran = (Date) date.parse(tgldua);
 
-            long bedaHari = Math.abs(tglJatuhTempo.getTime() - tglAngsuran.getTime());
+            long bedaHari = (tglAngsuran.getTime() - tglJatuhTempo.getTime());
             
             //boolean cek = new GadaiController().cek(tfIdGadaii.getText());
 
-            if (TimeUnit.MILLISECONDS.toDays(bedaHari) >= 7)
+            if (TimeUnit.MILLISECONDS.toDays(bedaHari) >= 7
+                    )
             {
                 int denda = (int) (TimeUnit.MILLISECONDS.toDays(bedaHari));
                 Integer pinjam = Integer.parseInt(tfHutang.getText()) ;
@@ -480,6 +480,7 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error : " +e);
         }
+        
     }//GEN-LAST:event_btnCekActionPerformed
 
     private void tfJatuhTempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfJatuhTempoActionPerformed

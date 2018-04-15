@@ -99,10 +99,8 @@
               </Group>
               <EmptySpace pref="12" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnHapusAngsuran" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="btnCek" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnHapusAngsuran" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="btnCek" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="btnSimpanAngsuran" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -315,10 +313,10 @@
                               <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="33" pref="33" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfJatuhTempo" pref="243" max="32767" attributes="0"/>
                               <Component id="tfAngsuran" max="32767" attributes="0"/>
+                              <Component id="tfJatuhTempo" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -328,11 +326,11 @@
                               <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfDenda" max="32767" attributes="0"/>
-                              <Component id="tfHutang" max="32767" attributes="0"/>
-                              <Component id="tfTotal" alignment="0" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="tfHutang" pref="252" max="32767" attributes="0"/>
+                              <Component id="tfDenda" alignment="1" max="32767" attributes="0"/>
+                              <Component id="tfTotal" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

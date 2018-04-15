@@ -143,7 +143,7 @@ public class Angsuran implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Angsuran[ idAngsuran=" + idAngsuran + " ]";
+        return "" + idAngsuran + " ";
     }
     
 }
