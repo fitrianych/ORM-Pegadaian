@@ -438,11 +438,13 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
         //tfIdGadaii.setEnabled(false);
         btnHapusAngsuran.setEnabled(true);
         btnSimpanAngsuran.setEnabled(true);
+        btnCek.setEnabled(true);
     }//GEN-LAST:event_tblAngsuranMouseClicked
 
     private void tfIdAngsuranKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdAngsuranKeyPressed
         btnHapusAngsuran.setEnabled(true);
         btnSimpanAngsuran.setEnabled(true);
+        btnCek.setEnabled(true);
     }//GEN-LAST:event_tfIdAngsuranKeyPressed
 
     private void btnCekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekActionPerformed
@@ -463,7 +465,7 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
             {
                 int denda = (int) (TimeUnit.MILLISECONDS.toDays(bedaHari));
                 Integer pinjam = Integer.parseInt(tfHutang.getText()) ;
-                tfDenda.setText(denda + 0.01 * pinjam + "");  
+                tfDenda.setText(denda * 0.01 * pinjam + "");  
                 
                 
                  //new AngsuranController().update(tfDenda.getText());
@@ -537,6 +539,7 @@ public class AngsuranJInternalFrame extends javax.swing.JInternalFrame {
         jDateAngsuran.setDate(new Date());
         btnSimpanAngsuran.setEnabled(false);
         btnHapusAngsuran.setEnabled(false); 
+        btnCek.setEnabled(false);
         tfIdAngsuran.setEnabled(true);
     }
 
